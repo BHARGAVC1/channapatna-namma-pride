@@ -1,0 +1,79 @@
+com.channapatna.nammapride.app-pngs-0 C:\Projects\channapatnaFinal\app\build\generated\res\pngs\debug
+com.channapatna.nammapride.app-resValues-1 C:\Projects\channapatnaFinal\app\build\generated\res\resValues\debug
+com.channapatna.nammapride.app-updated_navigation_xml-2 C:\Projects\channapatnaFinal\app\build\generated\updated_navigation_xml\debug
+com.channapatna.nammapride.app-packageDebugResources-3 C:\Projects\channapatnaFinal\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.channapatna.nammapride.app-packageDebugResources-4 C:\Projects\channapatnaFinal\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.channapatna.nammapride.app-debug-5 C:\Projects\channapatnaFinal\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.channapatna.nammapride.app-debug-6 C:\Projects\channapatnaFinal\app\src\debug\res
+com.channapatna.nammapride.app-main-7 C:\Projects\channapatnaFinal\app\src\main\res
+com.channapatna.nammapride.app-jetified-hilt-navigation-1.2.0-8 C:\Users\Rahul c\.gradle\caches\8.13\transforms\02f2cc3809429dede0eaa2b27c97f47f\transformed\jetified-hilt-navigation-1.2.0\res
+com.channapatna.nammapride.app-jetified-foundation-release-9 C:\Users\Rahul c\.gradle\caches\8.13\transforms\0339ff3ad8af482355da7bc3b41a0f25\transformed\jetified-foundation-release\res
+com.channapatna.nammapride.app-jetified-ui-release-10 C:\Users\Rahul c\.gradle\caches\8.13\transforms\08b4834ffc731798ef553326b8c0f73b\transformed\jetified-ui-release\res
+com.channapatna.nammapride.app-core-1.13.1-11 C:\Users\Rahul c\.gradle\caches\8.13\transforms\1071621a2ec03d70b19decd67a43f5ff\transformed\core-1.13.1\res
+com.channapatna.nammapride.app-navigation-common-ktx-2.8.2-12 C:\Users\Rahul c\.gradle\caches\8.13\transforms\11bc1214a6c13a01bff77ed5f7551452\transformed\navigation-common-ktx-2.8.2\res
+com.channapatna.nammapride.app-jetified-profileinstaller-1.3.1-13 C:\Users\Rahul c\.gradle\caches\8.13\transforms\12af9cc364a003b4ed3b0eb5a88649f8\transformed\jetified-profileinstaller-1.3.1\res
+com.channapatna.nammapride.app-jetified-camera-core-1.3.4-14 C:\Users\Rahul c\.gradle\caches\8.13\transforms\16f651a7cdda2a3b298086cb8afa75b5\transformed\jetified-camera-core-1.3.4\res
+com.channapatna.nammapride.app-jetified-runtime-saveable-release-15 C:\Users\Rahul c\.gradle\caches\8.13\transforms\1888670661a7c99f689be33c170b2c47\transformed\jetified-runtime-saveable-release\res
+com.channapatna.nammapride.app-jetified-camera-lifecycle-1.3.4-16 C:\Users\Rahul c\.gradle\caches\8.13\transforms\1a8b5056ed46cb0928137e8c4bbe9864\transformed\jetified-camera-lifecycle-1.3.4\res
+com.channapatna.nammapride.app-jetified-activity-ktx-1.9.2-17 C:\Users\Rahul c\.gradle\caches\8.13\transforms\1b995068fae16aefa5a58adce72de2dc\transformed\jetified-activity-ktx-1.9.2\res
+com.channapatna.nammapride.app-jetified-lifecycle-viewmodel-ktx-2.8.6-18 C:\Users\Rahul c\.gradle\caches\8.13\transforms\1bc0bd597ab8c07f8f02984bfc799f47\transformed\jetified-lifecycle-viewmodel-ktx-2.8.6\res
+com.channapatna.nammapride.app-jetified-lifecycle-viewmodel-compose-release-19 C:\Users\Rahul c\.gradle\caches\8.13\transforms\1c8f41a707d1d7a167bb2477a0cbb0dc\transformed\jetified-lifecycle-viewmodel-compose-release\res
+com.channapatna.nammapride.app-jetified-maps-compose-6.1.0-20 C:\Users\Rahul c\.gradle\caches\8.13\transforms\28133c32701818887e098a22919ec1aa\transformed\jetified-maps-compose-6.1.0\res
+com.channapatna.nammapride.app-room-runtime-2.6.1-21 C:\Users\Rahul c\.gradle\caches\8.13\transforms\2e44cd80554e2e30989d7c1db4ed46b0\transformed\room-runtime-2.6.1\res
+com.channapatna.nammapride.app-navigation-runtime-2.8.2-22 C:\Users\Rahul c\.gradle\caches\8.13\transforms\325183b03ff6dab574839cd65b77ea0d\transformed\navigation-runtime-2.8.2\res
+com.channapatna.nammapride.app-jetified-material-icons-extended-release-23 C:\Users\Rahul c\.gradle\caches\8.13\transforms\34983991e66c4a0cbba5f75bf039fdf7\transformed\jetified-material-icons-extended-release\res
+com.channapatna.nammapride.app-jetified-camera-view-1.3.4-24 C:\Users\Rahul c\.gradle\caches\8.13\transforms\3e0adf703c9502af6752e5270c4ef134\transformed\jetified-camera-view-1.3.4\res
+com.channapatna.nammapride.app-jetified-hilt-navigation-compose-1.2.0-25 C:\Users\Rahul c\.gradle\caches\8.13\transforms\418471d9b7580163aee362f9379b9f2e\transformed\jetified-hilt-navigation-compose-1.2.0\res
+com.channapatna.nammapride.app-jetified-ui-tooling-data-release-26 C:\Users\Rahul c\.gradle\caches\8.13\transforms\4464da7c844ae8685f249f98aacb4a9f\transformed\jetified-ui-tooling-data-release\res
+com.channapatna.nammapride.app-jetified-ui-tooling-release-27 C:\Users\Rahul c\.gradle\caches\8.13\transforms\44a85af040fe87f8bcc193c177658ce6\transformed\jetified-ui-tooling-release\res
+com.channapatna.nammapride.app-jetified-camera-video-1.3.4-28 C:\Users\Rahul c\.gradle\caches\8.13\transforms\49b72c747f3b714865d444015fcced54\transformed\jetified-camera-video-1.3.4\res
+com.channapatna.nammapride.app-sqlite-framework-2.4.0-29 C:\Users\Rahul c\.gradle\caches\8.13\transforms\4b952e4dd3938b2a1584aeb5da2d0cfb\transformed\sqlite-framework-2.4.0\res
+com.channapatna.nammapride.app-jetified-savedstate-ktx-1.2.1-30 C:\Users\Rahul c\.gradle\caches\8.13\transforms\4c5224f008770970bc6b84835ed87155\transformed\jetified-savedstate-ktx-1.2.1\res
+com.channapatna.nammapride.app-jetified-lifecycle-runtime-ktx-release-31 C:\Users\Rahul c\.gradle\caches\8.13\transforms\4cad2176c228f6ba0be89431fcd33982\transformed\jetified-lifecycle-runtime-ktx-release\res
+com.channapatna.nammapride.app-jetified-lifecycle-runtime-release-32 C:\Users\Rahul c\.gradle\caches\8.13\transforms\4f757706ba19dc9cdf7a5294fa3d05a9\transformed\jetified-lifecycle-runtime-release\res
+com.channapatna.nammapride.app-jetified-annotation-experimental-1.4.1-33 C:\Users\Rahul c\.gradle\caches\8.13\transforms\50e48ae55600340b6953564f974ec643\transformed\jetified-annotation-experimental-1.4.1\res
+com.channapatna.nammapride.app-jetified-lifecycle-process-2.8.6-34 C:\Users\Rahul c\.gradle\caches\8.13\transforms\5392ebc7a985343aee100ab4195b2b43\transformed\jetified-lifecycle-process-2.8.6\res
+com.channapatna.nammapride.app-jetified-emoji2-1.3.0-35 C:\Users\Rahul c\.gradle\caches\8.13\transforms\5625bca1a617063c7c615e2072ee0a19\transformed\jetified-emoji2-1.3.0\res
+com.channapatna.nammapride.app-jetified-runtime-release-36 C:\Users\Rahul c\.gradle\caches\8.13\transforms\5a0a3db4c38ba8ca9c589ff518759be0\transformed\jetified-runtime-release\res
+com.channapatna.nammapride.app-navigation-common-2.8.2-37 C:\Users\Rahul c\.gradle\caches\8.13\transforms\5cc4cf9a4a21523ffdfb2b415f6a5512\transformed\navigation-common-2.8.2\res
+com.channapatna.nammapride.app-jetified-coil-base-2.7.0-38 C:\Users\Rahul c\.gradle\caches\8.13\transforms\619fb73ceb1811e08aa67b948bef58b0\transformed\jetified-coil-base-2.7.0\res
+com.channapatna.nammapride.app-jetified-lifecycle-livedata-core-ktx-2.8.6-39 C:\Users\Rahul c\.gradle\caches\8.13\transforms\65346b12cebf0b0b2ee1518367ec8b1a\transformed\jetified-lifecycle-livedata-core-ktx-2.8.6\res
+com.channapatna.nammapride.app-jetified-emoji2-views-helper-1.3.0-40 C:\Users\Rahul c\.gradle\caches\8.13\transforms\68d7278fe6d6be02c08247162ed81582\transformed\jetified-emoji2-views-helper-1.3.0\res
+com.channapatna.nammapride.app-jetified-ui-graphics-release-41 C:\Users\Rahul c\.gradle\caches\8.13\transforms\73d2ce1b0a862acb32a86fc3803a7708\transformed\jetified-ui-graphics-release\res
+com.channapatna.nammapride.app-jetified-foundation-layout-release-42 C:\Users\Rahul c\.gradle\caches\8.13\transforms\76529facbc4ee08afc936a9af304d76b\transformed\jetified-foundation-layout-release\res
+com.channapatna.nammapride.app-jetified-ui-unit-release-43 C:\Users\Rahul c\.gradle\caches\8.13\transforms\78564e9425ba237dbf6e25b7ecc3acc8\transformed\jetified-ui-unit-release\res
+com.channapatna.nammapride.app-jetified-customview-poolingcontainer-1.0.0-44 C:\Users\Rahul c\.gradle\caches\8.13\transforms\80c9c1bbecb397d83d03e6225c2c11bf\transformed\jetified-customview-poolingcontainer-1.0.0\res
+com.channapatna.nammapride.app-appcompat-1.6.1-45 C:\Users\Rahul c\.gradle\caches\8.13\transforms\82d79e4a9a5f4cabc2714ed7970acc99\transformed\appcompat-1.6.1\res
+com.channapatna.nammapride.app-jetified-play-services-base-18.5.0-46 C:\Users\Rahul c\.gradle\caches\8.13\transforms\8329adc1e8aed9f6c889ec89cfc538d0\transformed\jetified-play-services-base-18.5.0\res
+com.channapatna.nammapride.app-jetified-graphics-path-1.0.1-47 C:\Users\Rahul c\.gradle\caches\8.13\transforms\8b379d9fd3e69778083c908e39545fb5\transformed\jetified-graphics-path-1.0.1\res
+com.channapatna.nammapride.app-jetified-camera-camera2-1.3.4-48 C:\Users\Rahul c\.gradle\caches\8.13\transforms\8da8f22ba3c2603839b300456f11cf69\transformed\jetified-camera-camera2-1.3.4\res
+com.channapatna.nammapride.app-jetified-ui-test-manifest-1.7.3-49 C:\Users\Rahul c\.gradle\caches\8.13\transforms\8f4c8a62664297cde5b0ea972e04409c\transformed\jetified-ui-test-manifest-1.7.3\res
+com.channapatna.nammapride.app-jetified-activity-compose-1.9.2-50 C:\Users\Rahul c\.gradle\caches\8.13\transforms\9419d4bb1e613dffe8390345121fdfc1\transformed\jetified-activity-compose-1.9.2\res
+com.channapatna.nammapride.app-jetified-lifecycle-viewmodel-savedstate-2.8.6-51 C:\Users\Rahul c\.gradle\caches\8.13\transforms\97d6df46371154808d647004b6139ded\transformed\jetified-lifecycle-viewmodel-savedstate-2.8.6\res
+com.channapatna.nammapride.app-fragment-1.5.1-52 C:\Users\Rahul c\.gradle\caches\8.13\transforms\9bb67acc527e06b445fc397e82771e98\transformed\fragment-1.5.1\res
+com.channapatna.nammapride.app-core-runtime-2.2.0-53 C:\Users\Rahul c\.gradle\caches\8.13\transforms\9c14da7ea27fdc38e8992e58130cfdfc\transformed\core-runtime-2.2.0\res
+com.channapatna.nammapride.app-jetified-material-release-54 C:\Users\Rahul c\.gradle\caches\8.13\transforms\a01f1f304ecdcb1512ea03eaf15e9b94\transformed\jetified-material-release\res
+com.channapatna.nammapride.app-lifecycle-livedata-core-2.8.6-55 C:\Users\Rahul c\.gradle\caches\8.13\transforms\a41c7d2a677e1f8ad977641a9f5376d2\transformed\lifecycle-livedata-core-2.8.6\res
+com.channapatna.nammapride.app-jetified-core-ktx-1.13.1-56 C:\Users\Rahul c\.gradle\caches\8.13\transforms\a4e462f9d1ac3a8cf090aaf241d7a3a8\transformed\jetified-core-ktx-1.13.1\res
+com.channapatna.nammapride.app-jetified-ui-tooling-preview-release-57 C:\Users\Rahul c\.gradle\caches\8.13\transforms\aac302ff566aa794e4f091b1734d0bf5\transformed\jetified-ui-tooling-preview-release\res
+com.channapatna.nammapride.app-jetified-lifecycle-runtime-compose-release-58 C:\Users\Rahul c\.gradle\caches\8.13\transforms\b66370cba7f648d6d131afa947180906\transformed\jetified-lifecycle-runtime-compose-release\res
+com.channapatna.nammapride.app-jetified-ui-text-release-59 C:\Users\Rahul c\.gradle\caches\8.13\transforms\ba332317f815f7997673665a8128ee1a\transformed\jetified-ui-text-release\res
+com.channapatna.nammapride.app-jetified-room-ktx-2.6.1-60 C:\Users\Rahul c\.gradle\caches\8.13\transforms\bbae4f9aec96932471dbab3e6f011a35\transformed\jetified-room-ktx-2.6.1\res
+com.channapatna.nammapride.app-jetified-ui-util-release-61 C:\Users\Rahul c\.gradle\caches\8.13\transforms\bd38f4adeae162858f89d6ba4e0f48dc\transformed\jetified-ui-util-release\res
+com.channapatna.nammapride.app-lifecycle-livedata-2.8.6-62 C:\Users\Rahul c\.gradle\caches\8.13\transforms\be4abc631d23d9ff1dd6cb481dd10215\transformed\lifecycle-livedata-2.8.6\res
+com.channapatna.nammapride.app-jetified-play-services-basement-18.4.0-63 C:\Users\Rahul c\.gradle\caches\8.13\transforms\c8024add5781a7dad8c01548e16423ff\transformed\jetified-play-services-basement-18.4.0\res
+com.channapatna.nammapride.app-jetified-material-icons-core-release-64 C:\Users\Rahul c\.gradle\caches\8.13\transforms\d0ad50e6b053a0c2ce5ba8391aff0d91\transformed\jetified-material-icons-core-release\res
+com.channapatna.nammapride.app-jetified-play-services-maps-19.0.0-65 C:\Users\Rahul c\.gradle\caches\8.13\transforms\d8bdc3f5fbad1633f4f56aff93964be9\transformed\jetified-play-services-maps-19.0.0\res
+com.channapatna.nammapride.app-jetified-appcompat-resources-1.6.1-66 C:\Users\Rahul c\.gradle\caches\8.13\transforms\deedb82fd10dea40e248e94fd690e1a2\transformed\jetified-appcompat-resources-1.6.1\res
+com.channapatna.nammapride.app-jetified-animation-release-67 C:\Users\Rahul c\.gradle\caches\8.13\transforms\e21a62dcaa5410366aae63b346786a44\transformed\jetified-animation-release\res
+com.channapatna.nammapride.app-jetified-material-ripple-release-68 C:\Users\Rahul c\.gradle\caches\8.13\transforms\e3b89ad36708cd0c6d64705237c58b72\transformed\jetified-material-ripple-release\res
+com.channapatna.nammapride.app-jetified-ui-geometry-release-69 C:\Users\Rahul c\.gradle\caches\8.13\transforms\e4041da305bf8b1b2a4a6c41c008be9f\transformed\jetified-ui-geometry-release\res
+com.channapatna.nammapride.app-jetified-animation-core-release-70 C:\Users\Rahul c\.gradle\caches\8.13\transforms\e65f884661e4c7016e5f5b0674ddeccf\transformed\jetified-animation-core-release\res
+com.channapatna.nammapride.app-jetified-startup-runtime-1.1.1-71 C:\Users\Rahul c\.gradle\caches\8.13\transforms\e6eb9aa3f288dfc82b041999e82ad9cd\transformed\jetified-startup-runtime-1.1.1\res
+com.channapatna.nammapride.app-navigation-runtime-ktx-2.8.2-72 C:\Users\Rahul c\.gradle\caches\8.13\transforms\e9a0396bf84e0ff040c1445b4efebd0e\transformed\navigation-runtime-ktx-2.8.2\res
+com.channapatna.nammapride.app-jetified-navigation-compose-2.8.2-73 C:\Users\Rahul c\.gradle\caches\8.13\transforms\ef4c1c7e11ef161d96fc6a8fa7175ce6\transformed\jetified-navigation-compose-2.8.2\res
+com.channapatna.nammapride.app-sqlite-2.4.0-74 C:\Users\Rahul c\.gradle\caches\8.13\transforms\ef8e39e49621903e753d7aef0d0fe193\transformed\sqlite-2.4.0\res
+com.channapatna.nammapride.app-jetified-activity-1.9.2-75 C:\Users\Rahul c\.gradle\caches\8.13\transforms\f589088e064f8c199a7ea58aeb9c7d1f\transformed\jetified-activity-1.9.2\res
+com.channapatna.nammapride.app-jetified-lifecycle-viewmodel-release-76 C:\Users\Rahul c\.gradle\caches\8.13\transforms\f7b9d6dffda1be40d2a251f7bf93ebdd\transformed\jetified-lifecycle-viewmodel-release\res
+com.channapatna.nammapride.app-jetified-material3-release-77 C:\Users\Rahul c\.gradle\caches\8.13\transforms\fd10a42f7aa2be90c7f82ce93aee5866\transformed\jetified-material3-release\res
+com.channapatna.nammapride.app-jetified-savedstate-1.2.1-78 C:\Users\Rahul c\.gradle\caches\8.13\transforms\fda0d592028b2f03b54315486407f529\transformed\jetified-savedstate-1.2.1\res

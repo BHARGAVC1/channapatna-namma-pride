@@ -1,0 +1,157 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "be7840812c3b4e8096f2aa6dcbd16d05",
+    "entities": [
+      {
+        "tableName": "toys",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`toyId` TEXT NOT NULL, `name` TEXT NOT NULL, `artisanId` TEXT NOT NULL, `material` TEXT NOT NULL, `processDescription` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `isAuthentic` INTEGER NOT NULL, `verificationCode` TEXT NOT NULL, `price` TEXT NOT NULL, `category` TEXT NOT NULL, `isFavorite` INTEGER NOT NULL, PRIMARY KEY(`toyId`))",
+        "fields": [
+          {
+            "fieldPath": "toyId",
+            "columnName": "toyId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artisanId",
+            "columnName": "artisanId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "material",
+            "columnName": "material",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "processDescription",
+            "columnName": "processDescription",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageUrl",
+            "columnName": "imageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isAuthentic",
+            "columnName": "isAuthentic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verificationCode",
+            "columnName": "verificationCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "toyId"
+          ]
+        }
+      },
+      {
+        "tableName": "artisans",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`artisanId` TEXT NOT NULL, `name` TEXT NOT NULL, `locationText` TEXT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `experienceYears` INTEGER NOT NULL, `craftType` TEXT NOT NULL, `bio` TEXT NOT NULL, `photoUrl` TEXT NOT NULL, PRIMARY KEY(`artisanId`))",
+        "fields": [
+          {
+            "fieldPath": "artisanId",
+            "columnName": "artisanId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "locationText",
+            "columnName": "locationText",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "experienceYears",
+            "columnName": "experienceYears",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "craftType",
+            "columnName": "craftType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bio",
+            "columnName": "bio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "photoUrl",
+            "columnName": "photoUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "artisanId"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'be7840812c3b4e8096f2aa6dcbd16d05')"
+    ]
+  }
+}

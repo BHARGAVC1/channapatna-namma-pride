@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Channapatna Namma Pride</string>
+    <string name="cd_back">Navigate back</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_clear">Clear input</string>
+    <string name="cd_verify">Verify toy authenticity</string>
+    <string name="cd_scan_qr">Open QR code scanner</string>
+    <string name="cd_close_scanner">Close scanner</string>
+    <string name="cd_catalog">Browse toy catalog</string>
+    <string name="cd_artisans">View artisans</string>
+    <string name="cd_story">Read Channapatna story</string>
+    <string name="cd_artisan_profile">View artisan profile</string>
+    <string name="cd_view_map">View artisan location on map</string>
+    <string name="cd_toy_image">Toy product image</string>
+    <string name="cd_verified_badge">Verified authentic badge</string>
+    <string name="cd_chevron">Go to details</string>
+</resources>
