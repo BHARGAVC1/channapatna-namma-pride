@@ -1,118 +1,118 @@
 [
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_splash_logo.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/splash_logo.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_splash_logo.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/splash_logo.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_toy_t003.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/toy_t003.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_toy_t006.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/toy_t006.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_cat_spinning.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/cat_spinning.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_story_craft.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/story_craft.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_cat_figurines.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/cat_figurines.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_cat_stacking.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/cat_stacking.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_cat_rattles.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/cat_rattles.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_cat_nesting.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/cat_nesting.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_story_support.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/story_support.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_toy_t001.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/toy_t001.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_story_support.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/story_support.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_cat_nesting.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/cat_nesting.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_story_challenge.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/story_challenge.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_cat_stacking.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/cat_stacking.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_home_hero_banner.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/home_hero_banner.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_toy_t006.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/toy_t006.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_story_town.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/story_town.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-mdpi/ic_launcher.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_cat_rattles.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/cat_rattles.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_story_town.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/story_town.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_toy_t004.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/toy_t004.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_toy_t001.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/toy_t001.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_toy_t004.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/toy_t004.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_ic_launcher_512.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/ic_launcher_512.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_story_challenge.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/story_challenge.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_toy_t002.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/toy_t002.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-hdpi/ic_launcher.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_toy_t002.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/toy_t002.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_toy_t003.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/toy_t003.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_story_craft.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/story_craft.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_toy_t005.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/toy_t005.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_home_hero_banner.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/home_hero_banner.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_cat_spinning.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/cat_spinning.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_toy_t005.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/toy_t005.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_cat_figurines.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/cat_figurines.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_ic_launcher_512.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/ic_launcher_512.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.channapatna.nammapride.app-debug-6:/drawable_story_gi.png.flat",
-        "source": "com.channapatna.nammapride.app-main-8:/drawable/story_gi.png"
+        "merged": "com.channapatna.nammapride.app-debug-77:/drawable_story_gi.png.flat",
+        "source": "com.channapatna.nammapride.app-main-79:/drawable/story_gi.png"
     }
 ]
