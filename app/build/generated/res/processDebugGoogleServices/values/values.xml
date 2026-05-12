@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="gcm_defaultSenderId" translatable="false">73495759237</string>
-    <string name="google_api_key" translatable="false">AIzaSyBQ6VeaKnYY_9Z6im5HmSGTn3ACWT4jlYA</string>
-    <string name="google_app_id" translatable="false">1:73495759237:android:3892945c0fd45c127cdcec</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBQ6VeaKnYY_9Z6im5HmSGTn3ACWT4jlYA</string>
-    <string name="google_storage_bucket" translatable="false">channapatna-namma-pride-8d318.firebasestorage.app</string>
-    <string name="project_id" translatable="false">channapatna-namma-pride-8d318</string>
-</resources>
