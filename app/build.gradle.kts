@@ -8,6 +8,7 @@ plugins {
 }
 
 val isRelease = gradle.startParameter.taskNames.any { it.contains("release", ignoreCase = true) }
+val mapsApiKey: String = (project.findProperty("MAPS_API_KEY") ?: "") as String
 
 android {
     namespace  = "com.channapatna.nammapride"
@@ -20,7 +21,7 @@ android {
         versionCode           = 2
         versionName           = "2.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders["MAPS_API_KEY"] = (project.findProperty("MAPS_API_KEY") ?: "") as String
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
     }
 
     buildTypes {
