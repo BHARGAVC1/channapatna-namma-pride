@@ -53,11 +53,18 @@ The application follows MVVM (Model-View-ViewModel) architecture.
 - Dependency Injection
 
 ---
-# 🚀 Installation
+# 🚀 Installation Guide
+
+## Prerequisites
+- Android Studio Hedgehog or above
+- Kotlin support
+- Firebase account
+- Google Maps API key
+
+## Clone Repository
 
 ```bash
 git clone https://github.com/BHARGAVC1/channapatna-namma-pride.git
-```
 
 Open in Android Studio and run the project.
 
