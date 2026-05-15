@@ -2,6 +2,8 @@ package com.channapatna.nammapride.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.channapatna.nammapride.data.local.dao.ArtisanDao
 import com.channapatna.nammapride.data.local.dao.ToyDao
 import com.channapatna.nammapride.data.local.database.AppDatabase
@@ -32,8 +34,17 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // Version 2 added isFavorite column to toys table
+                database.execSQL(
+                    "ALTER TABLE toys ADD COLUMN isFavorite INTEGER NOT NULL DEFAULT 0"
+                )
+            }
+        }
+
         val db = Room.databaseBuilder(context, AppDatabase::class.java, "channapatna_db")
-            .fallbackToDestructiveMigration()
+            .addMigrations(MIGRATION_1_2)
             .build()
         CoroutineScope(Dispatchers.IO).launch {
             if (db.toyDao().count() == 0) {
