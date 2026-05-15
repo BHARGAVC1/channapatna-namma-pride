@@ -27,6 +27,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.channapatna.nammapride.R
 import com.channapatna.nammapride.data.local.entity.Artisan
 import com.channapatna.nammapride.data.local.entity.Toy
@@ -204,11 +205,18 @@ private fun toyImageRes(toyId: String): Int? = when (toyId) {
 }
 
 @Composable
-fun ToyImage(toyId: String, modifier: Modifier = Modifier) {
+fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modifier) {
     val resId = toyImageRes(toyId)
     if (resId != null) {
         Image(
             painter = painterResource(resId),
+            contentDescription = null,
+            modifier = modifier,
+            contentScale = ContentScale.Crop
+        )
+    } else if (!imageUrl.isNullOrBlank()) {
+        AsyncImage(
+            model = imageUrl,
             contentDescription = null,
             modifier = modifier,
             contentScale = ContentScale.Crop
@@ -260,7 +268,7 @@ fun ToyCard(
                             }
                         } else Modifier
                     )
-            ) { ToyImage(toy.toyId, Modifier.fillMaxSize()) }
+            ) { ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize()) }
             Spacer(Modifier.width(14.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(toy.name, style = MaterialTheme.typography.titleMedium)

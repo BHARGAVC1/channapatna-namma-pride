@@ -83,7 +83,7 @@ fun ToyDetailScreen(
                                     }
                                 )
                         ) {
-                            ToyImage(toy.toyId, Modifier.fillMaxSize())
+                            ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize())
                         }
 
                         // Gradient Fade
