@@ -21,6 +21,7 @@ import com.channapatna.nammapride.ui.components.*
 import com.channapatna.nammapride.ui.theme.Spacing
 import com.channapatna.nammapride.viewmodel.ToyDetailViewModel
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun ResultScreen(
     toyId: String,

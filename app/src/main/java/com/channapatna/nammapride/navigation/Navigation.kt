@@ -1,5 +1,6 @@
 package com.channapatna.nammapride.navigation
 
+import androidx.camera.core.ExperimentalGetImage
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.runtime.Composable
@@ -55,7 +56,7 @@ private val slidePopExit: AnimatedContentTransitionScope<NavBackStackEntry>.() -
     ) + fadeOut(tween(160))
 }
 
-@OptIn(ExperimentalSharedTransitionApi::class)
+@OptIn(ExperimentalSharedTransitionApi::class, ExperimentalGetImage::class)
 @Composable
 fun AppNavGraph(navController: NavHostController) {
     SharedTransitionLayout {
