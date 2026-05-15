@@ -1,6 +1,8 @@
 package com.channapatna.nammapride
 
 import android.app.Application
+import android.util.Log
+import com.channapatna.nammapride.data.repository.AuthException
 import com.channapatna.nammapride.data.repository.FirestoreSeeder
 import com.channapatna.nammapride.data.repository.IAuthRepository
 import com.google.firebase.FirebaseApp
@@ -38,8 +40,12 @@ class ChannapatnaApp : Application() {
             try {
                 authRepository.ensureSignedIn()   // anonymous UID
                 firestoreSeeder.seedIfEmpty()      // one-time data seed
+            } catch (e: AuthException) {
+                // Auth failed (offline / App Check rejected).
+                // App works offline from Room cache. Retry next launch.
+                Log.w("ChannapatnaApp", "Auth failed: ${e.message}")
             } catch (e: Exception) {
-                // Offline on first launch — retries next run
+                Log.w("ChannapatnaApp", "Startup error: ${e.message}")
             }
         }
     }
