@@ -84,6 +84,14 @@ Example:
 MAPS_API_KEY=YOUR_API_KEY
 ```
 
+## Local Setup
+1. Copy `local.properties.example` to `local.properties`.
+2. Add your Maps API key:
+   ```properties
+   MAPS_API_KEY=AIzaSy...
+   ```
+3. Sync Gradle in Android Studio.
+
 ---
 
 # 📂 Project Structure
