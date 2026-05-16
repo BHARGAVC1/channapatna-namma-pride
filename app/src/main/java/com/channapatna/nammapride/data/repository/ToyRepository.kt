@@ -23,6 +23,7 @@ interface IToyRepository {
     fun getAllArtisans(): Flow<UiState<List<Artisan>>>
     suspend fun verifyToy(id: String): UiState<ToyWithArtisan>
     suspend fun getArtisanById(id: String): UiState<Artisan>
+    fun getToyByIdFlow(id: String): Flow<UiState<Toy>>
     suspend fun getToyById(id: String): UiState<Toy>
     suspend fun toggleFavorite(id: String, isFavorite: Boolean)
     fun getFavoriteToys(): Flow<UiState<List<Toy>>>
@@ -85,10 +86,11 @@ class ToyRepositoryImpl @Inject constructor(
                 launch(Dispatchers.IO) {
                     if (remote.isNotEmpty()) {
                         val favIds = toyDao.getFavoriteIds().toSet()
-                        toyDao.insertAll(remote.map {
+                        val updatedRemote = remote.map {
                             it.copy(isFavorite = it.toyId in favIds)
-                        })
-                        trySend(UiState.Success(remote))
+                        }
+                        toyDao.insertAll(updatedRemote)
+                        trySend(UiState.Success(updatedRemote))
                     } else {
                         val currentCache = toyDao.getAllToys().first()
                         if (currentCache.isEmpty()) trySend(UiState.Empty)
@@ -168,4 +170,11 @@ class ToyRepositoryImpl @Inject constructor(
             UiState.Error(e.localizedMessage ?: "Unknown error")
         }
     }
+
+    override fun getToyByIdFlow(id: String): Flow<UiState<Toy>> = toyDao.getToyByIdFlow(id)
+        .map { toy -> 
+            if (toy != null) UiState.Success(toy) 
+            else UiState.Error("Toy not found") 
+        }
+        .distinctUntilChanged()
 }

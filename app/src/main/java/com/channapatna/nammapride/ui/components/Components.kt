@@ -104,11 +104,16 @@ fun LoadingView(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ErrorView(message: String, modifier: Modifier = Modifier) {
+fun ErrorView(message: String, modifier: Modifier = Modifier, onRetry: (() -> Unit)? = null) {
     Box(modifier.fillMaxSize().padding(32.dp), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Icon(Icons.Default.Warning, null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(40.dp))
+            Icon(Icons.Default.Warning, "Warning", tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(40.dp))
             Text(message, style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.Center)
+            if (onRetry != null) {
+                Button(onClick = onRetry) {
+                    Text("Retry")
+                }
+            }
         }
     }
 }
@@ -210,14 +215,14 @@ fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modif
     if (resId != null) {
         Image(
             painter = painterResource(resId),
-            contentDescription = null,
+            contentDescription = "Handcrafted Toy $toyId",
             modifier = modifier,
             contentScale = ContentScale.Crop
         )
     } else if (!imageUrl.isNullOrBlank()) {
         AsyncImage(
             model = imageUrl,
-            contentDescription = null,
+            contentDescription = "Handcrafted Toy $toyId",
             modifier = modifier,
             contentScale = ContentScale.Crop
         )

@@ -13,6 +13,9 @@ interface ToyDao {
     @Query("SELECT * FROM toys WHERE toyId = :id OR verificationCode = :id LIMIT 1")
     suspend fun getToyById(id: String): Toy?
 
+    @Query("SELECT * FROM toys WHERE toyId = :id OR verificationCode = :id LIMIT 1")
+    fun getToyByIdFlow(id: String): Flow<Toy?>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(toys: List<Toy>)
 

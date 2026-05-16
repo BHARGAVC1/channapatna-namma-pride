@@ -43,16 +43,9 @@ object DatabaseModule {
             }
         }
 
-        val db = Room.databaseBuilder(context, AppDatabase::class.java, "channapatna_db")
+        return Room.databaseBuilder(context, AppDatabase::class.java, "channapatna_db")
             .addMigrations(MIGRATION_1_2)
             .build()
-        CoroutineScope(Dispatchers.IO).launch {
-            if (db.toyDao().count() == 0) {
-                db.artisanDao().insertAll(SampleData.artisans)
-                db.toyDao().insertAll(SampleData.toys)
-            }
-        }
-        return db
     }
 
     @Provides fun provideToyDao(db: AppDatabase): ToyDao = db.toyDao()
@@ -75,6 +68,9 @@ object UseCaseModule {
 
     @Provides
     fun provideGetToyByIdUseCase(repo: IToyRepository) = com.channapatna.nammapride.domain.usecase.GetToyByIdUseCase(repo)
+
+    @Provides
+    fun provideGetToyByIdFlowUseCase(repo: IToyRepository) = com.channapatna.nammapride.domain.usecase.GetToyByIdFlowUseCase(repo)
 
     @Provides
     fun provideGetAllArtisansUseCase(repo: IToyRepository) = com.channapatna.nammapride.domain.usecase.GetAllArtisansUseCase(repo)

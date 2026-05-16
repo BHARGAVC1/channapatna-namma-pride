@@ -8,8 +8,11 @@ import com.channapatna.nammapride.util.NetworkHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -17,27 +20,33 @@ class HomeViewModel @Inject constructor(
     private val verifyToyUseCase: VerifyToyUseCase,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow(HomeUiState(isOffline = !networkHelper.isOnline()))
-    val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
+    private val _userState = MutableStateFlow(HomeUiState())
+    
+    val uiState: StateFlow<HomeUiState> = combine(
+        _userState,
+        networkHelper.isOnlineFlow
+    ) { userState, isOnline ->
+        userState.copy(isOffline = !isOnline)
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), HomeUiState(isOffline = !networkHelper.isOnline()))
 
     fun onToyIdChange(v: String) {
-        _uiState.value = _uiState.value.copy(toyId = v)
+        _userState.value = _userState.value.copy(toyId = v)
     }
 
     fun verify() {
-        val id = _uiState.value.toyId.trim()
+        val id = _userState.value.toyId.trim()
         if (id.isBlank()) {
-            _uiState.value = _uiState.value.copy(verifyState = UiState.Error("Please enter a Toy ID or scan a QR code."))
+            _userState.value = _userState.value.copy(verifyState = UiState.Error("Please enter a Toy ID or scan a QR code."))
             return
         }
         viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(verifyState = UiState.Loading)
+            _userState.value = _userState.value.copy(verifyState = UiState.Loading)
             val result = verifyToyUseCase(id)
-            _uiState.value = _uiState.value.copy(verifyState = result)
+            _userState.value = _userState.value.copy(verifyState = result)
         }
     }
 
     fun reset() {
-        _uiState.value = HomeUiState()
+        _userState.value = HomeUiState()
     }
 }
