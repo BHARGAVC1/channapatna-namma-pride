@@ -170,13 +170,46 @@ fun ShimmerToyItem() {
 }
 
 @Composable
-fun ArtisanInitialsAvatar(name: String, size: Int = 48) {
-    val initials = name.split(" ").take(2).mapNotNull { it.firstOrNull()?.uppercaseChar() }.joinToString("")
+fun ArtisanImage(url: String?, modifier: Modifier = Modifier) {
+    if (!url.isNullOrBlank()) {
+        AsyncImage(
+            model = url,
+            contentDescription = "Artisan portrait",
+            modifier = modifier,
+            contentScale = ContentScale.Crop
+        )
+    } else {
+        Box(
+            modifier = modifier.background(MaterialTheme.colorScheme.primaryContainer),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(Icons.Default.Person, null, tint = MaterialTheme.colorScheme.primary)
+        }
+    }
+}
+
+@Composable
+fun ArtisanInitialsAvatar(name: String, size: Int = 48, photoUrl: String? = null) {
     Box(
-        Modifier.size(size.dp).clip(CircleShape).background(Brush.radialGradient(listOf(MaterialTheme.colorScheme.primaryContainer, MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)))),
+        Modifier
+            .size(size.dp)
+            .clip(CircleShape)
+            .background(
+                Brush.radialGradient(
+                    listOf(
+                        MaterialTheme.colorScheme.primaryContainer,
+                        MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+                    )
+                )
+            ),
         contentAlignment = Alignment.Center
     ) {
-        Text(initials, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+        if (!photoUrl.isNullOrBlank()) {
+            ArtisanImage(photoUrl, Modifier.fillMaxSize())
+        } else {
+            val initials = name.split(" ").take(2).mapNotNull { it.firstOrNull()?.uppercaseChar() }.joinToString("")
+            Text(initials, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+        }
     }
 }
 
@@ -339,7 +372,7 @@ fun ArtisanCard(
                     }
                 } else Modifier
             ) {
-                ArtisanInitialsAvatar(artisan.name)
+                ArtisanInitialsAvatar(artisan.name, photoUrl = artisan.photoUrl)
             }
             Spacer(Modifier.width(Spacing.md))
             Column(Modifier.weight(1f)) {

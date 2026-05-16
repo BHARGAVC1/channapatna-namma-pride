@@ -39,7 +39,11 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import com.channapatna.nammapride.data.local.entity.Artisan
 import com.channapatna.nammapride.data.local.entity.UiState
+import com.channapatna.nammapride.ui.components.ArtisanInitialsAvatar
 import com.channapatna.nammapride.ui.components.ActionCard
 import com.channapatna.nammapride.ui.components.OfflineBanner
 import com.channapatna.nammapride.ui.components.SectionHeader
@@ -136,6 +140,11 @@ fun HomeScreen(
                     )
                 }
 
+                ArtisanSpotlightSection(
+                    state = uiState.artisanSpotlight,
+                    onArtisanClick = { id -> onArtisansClick() } // For now go to list, can be improved to profile
+                )
+
                 SectionHeader(title = "Explore", subtitle = "Discover the heritage of Channapatna")
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
                     ActionCard("Catalog", "Browse toys", Icons.Outlined.GridView, Modifier.weight(1f), onCatalogClick)
@@ -202,6 +211,56 @@ fun HomeScreen(
                     singleLine = true
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun ArtisanSpotlightSection(
+    state: UiState<List<com.channapatna.nammapride.data.local.entity.Artisan>>,
+    onArtisanClick: (String) -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+        SectionHeader(title = "Meet the Makers", subtitle = "Master artisans from the toy town")
+        
+        when (state) {
+            is UiState.Success -> {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.md),
+                    contentPadding = PaddingValues(end = Spacing.lg)
+                ) {
+                    items(state.data) { artisan ->
+                        Column(
+                            modifier = Modifier
+                                .width(100.dp)
+                                .clickable { onArtisanClick(artisan.artisanId) },
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(Spacing.xs)
+                        ) {
+                            ArtisanInitialsAvatar(
+                                name = artisan.name,
+                                size = 64,
+                                photoUrl = artisan.photoUrl
+                            )
+                            Text(
+                                text = artisan.name.split(" ").last(),
+                                style = MaterialTheme.typography.labelMedium,
+                                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                                maxLines = 1,
+                                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+                }
+            }
+            is UiState.Loading -> {
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
+                    repeat(4) {
+                        Box(Modifier.size(64.dp).clip(androidx.compose.foundation.shape.CircleShape).background(MaterialTheme.colorScheme.surfaceVariant))
+                    }
+                }
+            }
+            else -> {}
         }
     }
 }
