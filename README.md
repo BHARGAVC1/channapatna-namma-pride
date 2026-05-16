@@ -221,57 +221,59 @@ app/google-services.json
 
 ## 🏠 Home Screen
 
-| Main Dashboard | Search & Verification |
-|---|---|
-| ![](screenshots/home-main.jpeg) | ![](screenshots/home-search.jpeg) |
+<p align="center">
+  <img src="screenshots/home-main.jpeg" width="250"/>
+  <img src="screenshots/home-search.jpeg" width="250"/>
+</p>
 
 ---
 
 ## 🔍 QR Verification System
 
-| QR Scanner | Verification Result |
-|---|---|
-| ![](screenshots/qr-scanner.jpeg) | ![](screenshots/verification-result.jpeg) |
+<p align="center">
+  <img src="screenshots/qr-scanner.jpeg" width="250"/>
+  <img src="screenshots/verification-result.jpeg" width="250"/>
+</p>
 
 ---
 
 ## 🧸 Toy Catalog & Details
 
-| Toy Catalog | Toy Details |
-|---|---|
-| ![](screenshots/catalog.jpeg) | ![](screenshots/toy-details.jpeg) |
+<p align="center">
+  <img src="screenshots/catalog.jpeg" width="250"/>
+  <img src="screenshots/toy-details.jpeg" width="250"/>
+</p>
 
 ---
 
 ## 🧑‍🎨 Artisan Discovery
 
-| Artisan List | Artisan Profile |
-|---|---|
-| ![](screenshots/artisans.jpeg) | ![](screenshots/artisan-profile.jpeg) |
+<p align="center">
+  <img src="screenshots/artisans.jpeg" width="250"/>
+  <img src="screenshots/artisan-profile.jpeg" width="250"/>
+</p>
 
-| Workshop Location |
-|---|
-| ![](screenshots/artisan-location.jpeg) |
+<p align="center">
+  <img src="screenshots/artisan-location.jpeg" width="250"/>
+</p>
 
 ---
 
 ## ❤️ Favorites System
 
-| Saved Toys |
-|---|
-| ![](screenshots/saved-toys.jpeg) |
+<p align="center">
+  <img src="screenshots/saved-toys.jpeg" width="250"/>
+</p>
 
 ---
 
 ## 📖 Cultural Story Section
 
-| Heritage Story | Craft Information |
-|---|---|
-| ![](screenshots/story-overview.jpeg) | ![](screenshots/story-history.jpeg) |
-
-| GI Tag & Artisan Support |
-|---|
-| ![](screenshots/story-impact.jpeg) |
+<p align="center">
+  <img src="screenshots/story-overview.jpeg" width="250"/>
+  <img src="screenshots/story-history.jpeg" width="250"/>
+  <img src="screenshots/story-impact.jpeg" width="250"/>
+</p>
 
 ---
 
