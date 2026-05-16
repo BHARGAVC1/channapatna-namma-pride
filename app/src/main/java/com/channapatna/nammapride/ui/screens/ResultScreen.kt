@@ -119,7 +119,7 @@ fun ResultScreen(
                         if (uiState.artisanState is UiState.Success) {
                             val artisan = (uiState.artisanState as UiState.Success).data
                             Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                                SectionHeader(title = "The Artisan", subtitle = "Master craftsman behind this piece")
+                                SectionHeader(title = "Crafted By", subtitle = "Meet the master artisan")
                                 ArtisanCard(artisan = artisan, onClick = { onArtisanClick(artisan.artisanId) })
                             }
                         }

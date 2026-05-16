@@ -12,9 +12,9 @@ object SampleData {
             12.6504,
             77.2068,
             38,
-            "Lacquerware Wooden Toys",
+            "Traditional Lacquerware",
             "Master Ramaiah is a 4th generation artisan. His family has been keeping the 200-year-old Persian-inspired lacquerware tradition alive since the era of Tipu Sultan.",
-            "" // Removed profile pic
+            "" 
         ),
         Artisan(
             "A002",
@@ -25,7 +25,7 @@ object SampleData {
             18,
             "Painted Wooden Figures",
             "Kavitha specialises in miniature storytelling. Her work depicts rural life using vibrant natural dyes extracted from turmeric, indigo, and pomegranate rinds.",
-            "" // Removed profile pic
+            "" 
         ),
         Artisan(
             "A003",
@@ -34,9 +34,9 @@ object SampleData {
             12.6487,
             77.2051,
             25,
-            "Spinning Tops & Rattles",
+            "Kinetic Spinning Toys",
             "Known as the 'Master of Balance', Suresh's spinning tops are famous for their mathematical precision, turned on hand-lathes passed down for over five generations.",
-            "" // Removed profile pic
+            "" 
         ),
         Artisan(
             "A004",
@@ -45,9 +45,9 @@ object SampleData {
             12.6512,
             77.2074,
             22,
-            "Animal & Bird Figurines",
+            "Animal \u0026 Bird Figurines",
             "Meena focuses on child safety and development. She revived traditional designs that have been used in Karnataka households for centuries.",
-            "" // Removed profile pic
+            "" 
         )
     )
 
@@ -55,44 +55,62 @@ object SampleData {
         Toy(
             "T001", "Prism Rainbow Top", "A003", "Ivory Wood, Lacquer",
             "A symbol of Channapatna for 200 years. Hand-turned by Suresh Gowda using traditional techniques and polished with dry palm leaves until it glows.",
-            "", // Local drawable R.drawable.toy_t001 will be used
+            "", 
             true, "NP-T001-VRF", "₹ 350", "Spinning Toys"
         ),
         Toy(
             "T002", "Gajapayana Elephant Set", "A001", "Rosewood, Vegetable Dyes",
-            "Crafted by Master Ramaiah, these nesting elephants pay homage to the 200-year-old Mysore Dasara tradition.",
-            "", // Local drawable R.drawable.toy_t002 will be used
-            true, "NP-T002-VRF", "₹ 1,200", "Nesting Toys"
+            "Crafted by Ramaiah K., these nesting elephants pay homage to the 200-year-old Mysore Dasara tradition.",
+            "", 
+            true, "NP-T002-VRF", "₹ 1,200", "Heritage Collection"
         ),
         Toy(
             "T003", "Vedic Ganesha Figurine", "A002", "Sandalwood, Natural Resin",
             "Kavitha Devi's masterpiece. Carved following a 200-year-old organic recipe using turmeric and indigo dyes.",
-            "", // Local drawable R.drawable.toy_t003 will be used
+            "", 
             true, "NP-T003-VRF", "₹ 2,450", "Figurines"
         ),
         Toy(
             "T004", "Peacock Rattle", "A004", "Rubberwood, Natural Lacquer",
             "Designed by Meena Shankar. This rattle is a modern revival of a centuries-old infant toy legacy, using non-toxic lac for child safety.",
-            "", // Local drawable R.drawable.toy_t004 will be used
+            "", 
             true, "NP-T004-VRF", "₹ 180", "Rattles"
         ),
         Toy(
             "T005", "Village Scene Diorama", "A002", "Mixed Woods, Lacquer",
             "A complete 12-piece village scene by Kavitha Devi. Keeping the miniature storytelling tradition of Channapatna alive.",
-            "", // Local drawable R.drawable.toy_t005 will be used
-            true, "NP-T005-VRF", "₹ 3,800", "Figurines"
+            "", 
+            true, "NP-T005-VRF", "₹ 3,800", "Heritage Collection"
         ),
         Toy(
             "T006", "Stacking Rings Tower", "A001", "Rubberwood, Non-toxic paint",
-            "Classic stacking ring toy in seven colours, each ring turned on a lathe and sanded to a smooth finish.",
-            "", // Local drawable R.drawable.toy_t006 will be used
+            "Classic stacking ring toy in seven colours, hand-turned by Ramaiah K. No sharp edges, suitable from 12 months.",
+            "", 
             true, "NP-T006-VRF", "₹ 350", "Stacking Toys"
         ),
         Toy(
             "T007", "Traditional Dancing Doll", "A001", "Ivory Wood, Organic Polish",
-            "The iconic symbol of Indian handicrafts. A miracle of physics perfected over 200 years, ensuring it always returns to an upright position.",
-            "https://m.media-amazon.com/images/I/41D8Bv-qFHL._AC_UF894,1000_QL80_.jpg", // Real Channapatna Dancing Doll
-            true, "NP-T007-VRF", "₹ 750", "Traditional Dolls"
+            "The iconic symbol of Indian handicrafts. Reimagined by Ramaiah K. A miracle of physics perfected over 200 years.",
+            "https://m.media-amazon.com/images/I/41D8Bv-qFHL._AC_UF894,1000_QL80_.jpg", 
+            true, "NP-T007-VRF", "₹ 750", "Heritage Collection"
+        ),
+        Toy(
+            "T008", "Solar System Mobile", "A003", "Light Wood, Glow Lacquer",
+            "A hanging mobile for nursery rooms by Suresh Gowda. Uses a traditional bio-luminescent lacquer for a subtle glow.",
+            "https://m.media-amazon.com/images/I/71u9iW-20-L._SL1500_.jpg",
+            true, "NP-T008-VRF", "₹ 1,100", "Educational"
+        ),
+        Toy(
+            "T009", "Traditional Abacus", "A004", "Ivory Wood",
+            "Meena Shankar's educational abacus. Every bead is hand-turned using traditional methods to make learning tactile and beautiful.",
+            "https://m.media-amazon.com/images/I/61p-vD9o9TL._SL1500_.jpg",
+            true, "NP-T009-VRF", "₹ 620", "Educational"
+        ),
+        Toy(
+            "T010", "Wooden Whistle Set", "A003", "Light Wood",
+            "Set of 3 whistles mimicking different bird calls, tuned perfectly by Suresh Gowda using traditional physics.",
+            "https://m.media-amazon.com/images/I/61r5f75F4rL._SL1200_.jpg",
+            true, "NP-T010-VRF", "₹ 240", "Musical"
         )
     )
 
