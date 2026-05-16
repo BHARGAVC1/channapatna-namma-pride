@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -8,7 +10,15 @@ plugins {
 }
 
 val isRelease = gradle.startParameter.taskNames.any { it.contains("release", ignoreCase = true) }
-val mapsApiKey: String = (project.findProperty("MAPS_API_KEY") ?: "") as String
+
+// Correctly load local.properties
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+val mapsApiKey: String = (localProperties.getProperty("MAPS_API_KEY") ?: project.findProperty("MAPS_API_KEY") ?: "") as String
 
 android {
     namespace  = "com.channapatna.nammapride"
