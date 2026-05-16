@@ -43,9 +43,18 @@ object DatabaseModule {
             }
         }
 
-        return Room.databaseBuilder(context, AppDatabase::class.java, "channapatna_db")
+        val db = Room.databaseBuilder(context, AppDatabase::class.java, "channapatna_db")
             .addMigrations(MIGRATION_1_2)
             .build()
+            
+        // Initial seeding for offline-first experience
+        CoroutineScope(Dispatchers.IO).launch {
+            if (db.toyDao().count() == 0) {
+                db.artisanDao().insertAll(SampleData.artisans)
+                db.toyDao().insertAll(SampleData.toys)
+            }
+        }
+        return db
     }
 
     @Provides fun provideToyDao(db: AppDatabase): ToyDao = db.toyDao()

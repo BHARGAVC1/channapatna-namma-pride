@@ -59,23 +59,29 @@ class ToyRepositoryImpl @Inject constructor(
     }
 
     override fun getAllToys(): Flow<UiState<List<Toy>>> = callbackFlow {
+        var dataSent = false
         trySend(UiState.Loading)
         
-        // Always try to show cached data first
+        // 1. Immediate local cache check
         val initialCached = toyDao.getAllToys().first()
         if (initialCached.isNotEmpty()) {
             trySend(UiState.Success(initialCached))
+            dataSent = true
         }
 
+        // 2. Listen for Firestore updates
         val reg = firestore.collection("toys")
             .addSnapshotListener { snap, err ->
                 if (err != null) {
-                    // If Firestore fails (e.g. offline), we still have our cached data sent above.
-                    // We only send Error if we have NO data at all.
-                    launch(Dispatchers.IO) {
-                        val currentCache = toyDao.getAllToys().first()
-                        if (currentCache.isEmpty()) {
-                            trySend(UiState.Error("Offline: ${err.message}"))
+                    // If offline and we already have data, don't show an error screen
+                    if (!dataSent) {
+                        launch(Dispatchers.IO) {
+                            val currentCache = toyDao.getAllToys().first()
+                            if (currentCache.isEmpty()) {
+                                trySend(UiState.Error("Could not load data. Check your connection."))
+                            } else {
+                                trySend(UiState.Success(currentCache))
+                            }
                         }
                     }
                     return@addSnapshotListener
@@ -91,10 +97,14 @@ class ToyRepositoryImpl @Inject constructor(
                         }
                         toyDao.insertAll(updatedRemote)
                         trySend(UiState.Success(updatedRemote))
-                    } else {
+                        dataSent = true
+                    } else if (!dataSent) {
                         val currentCache = toyDao.getAllToys().first()
                         if (currentCache.isEmpty()) trySend(UiState.Empty)
-                        else trySend(UiState.Success(currentCache))
+                        else {
+                            trySend(UiState.Success(currentCache))
+                            dataSent = true
+                        }
                     }
                 }
             }
@@ -102,20 +112,26 @@ class ToyRepositoryImpl @Inject constructor(
     }
 
     override fun getAllArtisans(): Flow<UiState<List<Artisan>>> = callbackFlow {
+        var dataSent = false
         trySend(UiState.Loading)
         
         val initialCached = artisanDao.getAllArtisans().first()
         if (initialCached.isNotEmpty()) {
             trySend(UiState.Success(initialCached))
+            dataSent = true
         }
 
         val reg = firestore.collection("artisans")
             .addSnapshotListener { snap, err ->
                 if (err != null) {
-                    launch(Dispatchers.IO) {
-                        val currentCache = artisanDao.getAllArtisans().first()
-                        if (currentCache.isEmpty()) {
-                            trySend(UiState.Error("Offline: ${err.message}"))
+                    if (!dataSent) {
+                        launch(Dispatchers.IO) {
+                            val currentCache = artisanDao.getAllArtisans().first()
+                            if (currentCache.isEmpty()) {
+                                trySend(UiState.Error("Could not load artisans. Check your connection."))
+                            } else {
+                                trySend(UiState.Success(currentCache))
+                            }
                         }
                     }
                     return@addSnapshotListener
@@ -127,10 +143,14 @@ class ToyRepositoryImpl @Inject constructor(
                     if (remote.isNotEmpty()) {
                         artisanDao.insertAll(remote)
                         trySend(UiState.Success(remote))
-                    } else {
+                        dataSent = true
+                    } else if (!dataSent) {
                         val currentCache = artisanDao.getAllArtisans().first()
                         if (currentCache.isEmpty()) trySend(UiState.Empty)
-                        else trySend(UiState.Success(currentCache))
+                        else {
+                            trySend(UiState.Success(currentCache))
+                            dataSent = true
+                        }
                     }
                 }
             }
