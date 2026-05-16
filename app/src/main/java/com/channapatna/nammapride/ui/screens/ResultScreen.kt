@@ -1,9 +1,11 @@
 package com.channapatna.nammapride.ui.screens
 
+import android.content.Intent
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -13,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -30,6 +33,7 @@ fun ResultScreen(
     viewModel: ToyDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val context = LocalContext.current
     LaunchedEffect(toyId) { viewModel.load(toyId) }
 
     Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
@@ -52,79 +56,102 @@ fun ResultScreen(
                     artisanVisible = true
                 }
 
-                Column(
-                    Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .padding(Spacing.lg),
-                    verticalArrangement = Arrangement.spacedBy(Spacing.md)
-                ) {
-                    // Hero verified card
-                    AnimatedVisibility(
-                        visible = heroVisible,
-                        enter   = scaleIn(
-                            initialScale  = 0.85f,
-                            animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy)
-                        ) + fadeIn(tween(350))
+                Box(Modifier.fillMaxSize()) {
+                    Column(
+                        Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                            .padding(Spacing.lg),
+                        verticalArrangement = Arrangement.spacedBy(Spacing.md)
                     ) {
-                        VerifiedHeroCard(toyName = toy.name)
-                    }
-
-                    // Toy image
-                    AnimatedVisibility(
-                        visible = detailsVisible,
-                        enter   = slideInVertically(initialOffsetY = { it / 3 }, animationSpec = tween(300)) + fadeIn(tween(300))
-                    ) {
-                        Box(
-                            Modifier
-                                .fillMaxWidth()
-                                .height(260.dp)
-                                .clip(RoundedCornerShape(28.dp))
+                        // Hero verified card
+                        AnimatedVisibility(
+                            visible = heroVisible,
+                            enter   = scaleIn(
+                                initialScale  = 0.85f,
+                                animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy)
+                            ) + fadeIn(tween(350))
                         ) {
-                            ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize())
+                            VerifiedHeroCard(toyName = toy.name)
                         }
-                    }
 
-                    // Details
-                    AnimatedVisibility(
-                        visible = detailsVisible,
-                        enter   = slideInVertically(initialOffsetY = { it / 3 }, animationSpec = tween(320, 50)) + fadeIn(tween(300))
-                    ) {
-                        Surface(
-                            shape  = RoundedCornerShape(24.dp),
-                            border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),
-                            color  = MaterialTheme.colorScheme.surfaceVariant,
-                            shadowElevation = 2.dp
+                        // Toy image
+                        AnimatedVisibility(
+                            visible = detailsVisible,
+                            enter   = slideInVertically(initialOffsetY = { it / 3 }, animationSpec = tween(300)) + fadeIn(tween(300))
                         ) {
-                            Column(Modifier.padding(horizontal = Spacing.md)) {
-                                Spacer(Modifier.height(Spacing.sm))
-                                Text(toy.name, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onSurface)
-                                Text(toy.category, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                Spacer(Modifier.height(Spacing.sm))
-                                HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f), thickness = 0.5.dp)
-                                InfoRow("Toy ID", toy.toyId)
-                                InfoRow("Material", toy.material)
-                                InfoRow("Price", toy.price)
-                                InfoRow("Verification Code", toy.verificationCode)
-                                InfoRow("Process", toy.processDescription)
+                            Box(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .height(260.dp)
+                                    .clip(RoundedCornerShape(28.dp))
+                            ) {
+                                ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize())
                             }
                         }
-                    }
 
-                    // Artisan card
-                    AnimatedVisibility(
-                        visible = artisanVisible && uiState.artisanState is UiState.Success,
-                        enter   = slideInVertically(initialOffsetY = { it / 3 }, animationSpec = tween(320, 80)) + fadeIn(tween(300))
-                    ) {
-                        if (uiState.artisanState is UiState.Success) {
-                            val artisan = (uiState.artisanState as UiState.Success).data
-                            Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                                SectionHeader(title = "Crafted By", subtitle = "Meet the master artisan")
-                                ArtisanCard(artisan = artisan, onClick = { onArtisanClick(artisan.artisanId) })
+                        // Details
+                        AnimatedVisibility(
+                            visible = detailsVisible,
+                            enter   = slideInVertically(initialOffsetY = { it / 3 }, animationSpec = tween(320, 50)) + fadeIn(tween(300))
+                        ) {
+                            Surface(
+                                shape  = RoundedCornerShape(24.dp),
+                                border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),
+                                color  = MaterialTheme.colorScheme.surfaceVariant,
+                                shadowElevation = 2.dp
+                            ) {
+                                Column(Modifier.padding(horizontal = Spacing.md)) {
+                                    Spacer(Modifier.height(Spacing.sm))
+                                    Text(toy.name, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onSurface)
+                                    Text(toy.category, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    Spacer(Modifier.height(Spacing.sm))
+                                    HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f), thickness = 0.5.dp)
+                                    InfoRow("Toy ID", toy.toyId)
+                                    InfoRow("Material", toy.material)
+                                    InfoRow("Price", toy.price)
+                                    InfoRow("Verification Code", toy.verificationCode)
+                                    InfoRow("Process", toy.processDescription)
+                                }
                             }
                         }
+
+                        // Artisan card
+                        AnimatedVisibility(
+                            visible = artisanVisible && uiState.artisanState is UiState.Success,
+                            enter   = slideInVertically(initialOffsetY = { it / 3 }, animationSpec = tween(320, 80)) + fadeIn(tween(300))
+                        ) {
+                            if (uiState.artisanState is UiState.Success) {
+                                val artisan = (uiState.artisanState as UiState.Success).data
+                                Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                                    SectionHeader(title = "Crafted By", subtitle = "Meet the master artisan")
+                                    ArtisanCard(artisan = artisan, onClick = { onArtisanClick(artisan.artisanId) })
+                                }
+                            }
+                        }
+                        Spacer(Modifier.height(Spacing.md))
                     }
-                    Spacer(Modifier.height(Spacing.md))
+
+                    // Floating Share Button
+                    FloatingActionButton(
+                        onClick = {
+                            val sendIntent: Intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_TEXT, "Check out this authentic Channapatna Toy: ${toy.name} (Verified ID: ${toy.toyId})")
+                                type = "text/plain"
+                            }
+                            val shareIntent = Intent.createChooser(sendIntent, null)
+                            context.startActivity(shareIntent)
+                        },
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(24.dp),
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary,
+                        shape = CircleShape
+                    ) {
+                        Icon(Icons.Default.Share, contentDescription = "Share verification")
+                    }
                 }
             }
             else -> {}

@@ -37,16 +37,16 @@ fun CatalogScreen(
         AppTopBar("Toy Catalog", onBack)
 
         // Premium Search bar
-        Box(
+        Column(
             Modifier
                 .background(MaterialTheme.colorScheme.background)
-                .padding(horizontal = Spacing.md, vertical = Spacing.sm)
+                .padding(vertical = Spacing.sm)
         ) {
             OutlinedTextField(
                 value         = uiState.query,
                 onValueChange = viewModel::onSearchChange,
                 placeholder   = { Text("Search by name, material, category…", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)) },
-                modifier      = Modifier.fillMaxWidth(),
+                modifier      = Modifier.fillMaxWidth().padding(horizontal = Spacing.md),
                 singleLine    = true,
                 shape         = RoundedCornerShape(22.dp),
                 colors        = OutlinedTextFieldDefaults.colors(
@@ -64,6 +64,27 @@ fun CatalogScreen(
                     }
                 }
             )
+            
+            // Category Quick Filters
+            val categories = listOf("All", "Spinning Toys", "Nesting Toys", "Figurines", "Rattles", "Stacking Toys", "Heritage Collection")
+            LazyRow(
+                contentPadding = PaddingValues(horizontal = Spacing.md, vertical = Spacing.sm),
+                horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+            ) {
+                items(categories) { cat ->
+                    val isSelected = if (cat == "All") uiState.query.isEmpty() else uiState.query.equals(cat, true)
+                    FilterChip(
+                        selected = isSelected,
+                        onClick = { viewModel.onSearchChange(if (cat == "All") "" else cat) },
+                        label = { Text(cat) },
+                        shape = RoundedCornerShape(12.dp),
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MaterialTheme.colorScheme.primary,
+                            selectedLabelColor = MaterialTheme.colorScheme.onPrimary
+                        )
+                    )
+                }
+            }
         }
         HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f), thickness = 0.5.dp)
 

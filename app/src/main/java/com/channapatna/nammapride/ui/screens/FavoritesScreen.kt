@@ -25,6 +25,7 @@ import com.channapatna.nammapride.viewmodel.FavoritesViewModel
 @Composable
 fun FavoritesScreen(
     onToyClick: (String) -> Unit,
+    onExploreClick: () -> Unit,
     onBack: () -> Unit,
     sharedTransitionScope: SharedTransitionScope,
     animatedVisibilityScope: AnimatedVisibilityScope,
@@ -43,7 +44,7 @@ fun FavoritesScreen(
             when (s) {
                 is UiState.Loading -> ShimmerToyList(Modifier.padding(Spacing.md))
                 is UiState.Error -> ErrorView(s.message)
-                is UiState.Empty -> EmptyFavorites()
+                is UiState.Empty -> EmptyFavorites(onExploreClick)
                 is UiState.Success -> {
                     val toys = s.data
                     LazyColumn(
@@ -68,10 +69,12 @@ fun FavoritesScreen(
 }
 
 @Composable
-private fun EmptyFavorites() {
+private fun EmptyFavorites(onExploreClick: () -> Unit) {
     PremiumEmptyState(
         title = "Your handcrafted collection awaits ✨",
         subtitle = "Bookmark your favorite handcrafted toys to see them here.",
-        icon = Icons.Default.BookmarkBorder
+        icon = Icons.Default.BookmarkBorder,
+        actionText = "Browse Catalog",
+        onAction = onExploreClick
     )
 }

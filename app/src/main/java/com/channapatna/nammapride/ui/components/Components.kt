@@ -1,5 +1,6 @@
 package com.channapatna.nammapride.ui.components
 
+import android.os.Build
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
@@ -406,7 +407,7 @@ fun PremiumEmptyState(
                 Box(
                     Modifier
                         .size(140.dp)
-                        .blur(50.dp)
+                        .then(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Modifier.blur(50.dp) else Modifier)
                         .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.12f), CircleShape)
                 )
                 Icon(
@@ -465,7 +466,12 @@ fun ActionCard(
     onClick: () -> Unit
 ) {
     Surface(
-        modifier = modifier.clickable(onClick = onClick),
+        modifier = modifier
+            .heightIn(min = 64.dp)
+            .clickable(
+                onClick = onClick,
+                onClickLabel = "Open $label"
+            ),
         shape    = RoundedCornerShape(24.dp),
         color    = MaterialTheme.colorScheme.surfaceVariant,
         border   = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),

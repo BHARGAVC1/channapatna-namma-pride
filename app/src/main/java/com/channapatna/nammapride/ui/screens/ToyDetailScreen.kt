@@ -60,7 +60,7 @@ fun ToyDetailScreen(
                         Modifier
                             .fillMaxWidth()
                             .height(300.dp)
-                            .background(Color.White)
+                            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
                     ) {
                         Box(
                             Modifier

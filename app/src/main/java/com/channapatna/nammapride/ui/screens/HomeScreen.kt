@@ -43,6 +43,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import com.channapatna.nammapride.data.local.entity.Artisan
 import com.channapatna.nammapride.data.local.entity.UiState
+import com.channapatna.nammapride.data.local.entity.Toy
+import com.channapatna.nammapride.ui.components.ToyImage
 import com.channapatna.nammapride.ui.components.ArtisanInitialsAvatar
 import com.channapatna.nammapride.ui.components.ActionCard
 import com.channapatna.nammapride.ui.components.OfflineBanner
@@ -142,7 +144,12 @@ fun HomeScreen(
 
                 ArtisanSpotlightSection(
                     state = uiState.artisanSpotlight,
-                    onArtisanClick = { id -> onArtisansClick() } // For now go to list, can be improved to profile
+                    onArtisanClick = { _ -> onArtisansClick() }
+                )
+
+                FeaturedToysSection(
+                    state = uiState.featuredToys,
+                    onToyClick = { _ -> onCatalogClick() }
                 )
 
                 SectionHeader(title = "Explore", subtitle = "Discover the heritage of Channapatna")
@@ -257,6 +264,65 @@ private fun ArtisanSpotlightSection(
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
                     repeat(4) {
                         Box(Modifier.size(64.dp).clip(androidx.compose.foundation.shape.CircleShape).background(MaterialTheme.colorScheme.surfaceVariant))
+                    }
+                }
+            }
+            else -> {}
+        }
+    }
+}
+
+@Composable
+private fun FeaturedToysSection(
+    state: UiState<List<Toy>>,
+    onToyClick: (String) -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+        SectionHeader(title = "Heritage Highlights", subtitle = "Masterpieces from the town")
+        
+        when (state) {
+            is UiState.Success -> {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.md),
+                    contentPadding = PaddingValues(end = Spacing.lg)
+                ) {
+                    items(state.data) { toy ->
+                        Surface(
+                            modifier = Modifier
+                                .width(160.dp)
+                                .height(160.dp)
+                                .clickable { onToyClick(toy.toyId) },
+                            shape = RoundedCornerShape(20.dp),
+                            color = MaterialTheme.colorScheme.surfaceVariant,
+                            border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize())
+                                // Name overlay
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .align(Alignment.BottomCenter)
+                                        .background(Brush.verticalGradient(listOf(Color.Transparent, Color.Black.copy(alpha = 0.6f))))
+                                        .padding(Spacing.sm)
+                                ) {
+                                    Text(
+                                        toy.name,
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = Color.White,
+                                        maxLines = 1,
+                                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            is UiState.Loading -> {
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
+                    repeat(3) {
+                        Box(Modifier.size(160.dp).clip(RoundedCornerShape(20.dp)).background(MaterialTheme.colorScheme.surfaceVariant))
                     }
                 }
             }

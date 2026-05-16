@@ -98,6 +98,7 @@ fun AppNavGraph(navController: NavHostController) {
             composable(Routes.Favorites.route) {
                 FavoritesScreen(
                     onToyClick = { navController.navigate(Routes.ToyDetail.createRoute(it)) },
+                    onExploreClick = { navController.navigate(Routes.Catalog.route) },
                     onBack     = { navController.popBackStack() },
                     sharedTransitionScope = this@SharedTransitionLayout,
                     animatedVisibilityScope = this@composable

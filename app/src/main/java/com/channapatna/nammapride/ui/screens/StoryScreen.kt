@@ -87,8 +87,8 @@ fun StoryScreen(onBack: () -> Unit) {
                     )
                 }
 
-                storyItems.forEachIndexed { index, item ->
-                    StoryCard(item, scrollState, index)
+                storyItems.forEach { item ->
+                    StoryCard(item, scrollState)
                 }
                 
                 Spacer(Modifier.height(40.dp))
@@ -98,7 +98,7 @@ fun StoryScreen(onBack: () -> Unit) {
 }
 
 @Composable
-private fun StoryCard(item: StoryItem, scrollState: ScrollState, index: Int) {
+private fun StoryCard(item: StoryItem, scrollState: ScrollState) {
     Surface(
         shape  = RoundedCornerShape(28.dp),
         color  = MaterialTheme.colorScheme.surface,
@@ -119,7 +119,7 @@ private fun StoryCard(item: StoryItem, scrollState: ScrollState, index: Int) {
                         .graphicsLayer {
                             // Subtle parallax based on scroll
                             val offset = scrollState.value.toFloat()
-                            translationY = (offset * 0.1f) - (index * 20f)
+                            translationY = (offset * 0.05f) // Reduced parallax
                         },
                     contentScale = ContentScale.Crop
                 )

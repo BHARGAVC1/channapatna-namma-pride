@@ -3,9 +3,11 @@ package com.channapatna.nammapride.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.channapatna.nammapride.data.local.entity.Artisan
+import com.channapatna.nammapride.data.local.entity.Toy
 import com.channapatna.nammapride.data.local.entity.UiState
 import com.channapatna.nammapride.domain.usecase.VerifyToyUseCase
 import com.channapatna.nammapride.domain.usecase.GetAllArtisansUseCase
+import com.channapatna.nammapride.domain.usecase.GetToysUseCase
 import com.channapatna.nammapride.util.NetworkHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -21,6 +23,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel @Inject constructor(
     private val verifyToyUseCase: VerifyToyUseCase,
     private val getAllArtisansUseCase: GetAllArtisansUseCase,
+    private val getToysUseCase: GetToysUseCase,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
     private val _userState = MutableStateFlow(HomeUiState())
@@ -28,11 +31,15 @@ class HomeViewModel @Inject constructor(
     val uiState: StateFlow<HomeUiState> = combine(
         _userState,
         getAllArtisansUseCase(),
+        getToysUseCase(),
         networkHelper.isOnlineFlow
-    ) { userState, artisans, isOnline ->
+    ) { userState, artisans, toys, isOnline ->
         userState.copy(
             isOffline = !isOnline,
-            artisanSpotlight = artisans
+            artisanSpotlight = artisans,
+            featuredToys = if (toys is UiState.Success) {
+                UiState.Success(toys.data.take(6))
+            } else toys
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), HomeUiState(isOffline = !networkHelper.isOnline()))
 

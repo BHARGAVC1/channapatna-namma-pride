@@ -1,5 +1,6 @@
 package com.channapatna.nammapride
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -75,7 +76,7 @@ fun MainScreen() {
                 .align(Alignment.TopEnd)
                 .size(300.dp)
                 .offset(x = 100.dp, y = (-50).dp)
-                .blur(120.dp)
+                .then(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Modifier.blur(120.dp) else Modifier)
                 .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.08f), CircleShape)
         )
         Box(
@@ -83,7 +84,7 @@ fun MainScreen() {
                 .align(Alignment.BottomStart)
                 .size(400.dp)
                 .offset(x = (-150).dp, y = 100.dp)
-                .blur(150.dp)
+                .then(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Modifier.blur(150.dp) else Modifier)
                 .background(MaterialTheme.colorScheme.secondary.copy(alpha = 0.05f), CircleShape)
         )
 
@@ -197,15 +198,15 @@ private fun RowScope.NavigationItem(
                 Box(
                     modifier = Modifier
                         .size(40.dp)
-                        .blur(8.dp)
+                        .then(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Modifier.blur(8.dp) else Modifier)
                         .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.2f), CircleShape)
                 )
             }
             Icon(
                 imageVector = if (isSelected) selectedIcon else icon,
                 contentDescription = label,
-                tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
-                modifier = Modifier.size(24.dp).scale(scale)
+                tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(26.dp).scale(scale)
             )
         }
         AnimatedVisibility(
