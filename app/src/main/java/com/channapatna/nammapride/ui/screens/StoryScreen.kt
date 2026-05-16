@@ -7,17 +7,22 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.channapatna.nammapride.R
 import com.channapatna.nammapride.ui.components.AppTopBar
 import com.channapatna.nammapride.ui.theme.*
@@ -56,6 +61,24 @@ private val storyItems = listOf(
         "The Mission"
     ),
 )
+
+private fun storyColor(imageRes: Int): Color = when (imageRes) {
+    R.drawable.story_town      -> Color(0xFF2E7D32)
+    R.drawable.story_craft     -> Color(0xFF5D4037)
+    R.drawable.story_gi        -> Color(0xFF1565C0)
+    R.drawable.story_challenge -> Color(0xFFC62828)
+    R.drawable.story_support   -> Color(0xFF6A1B9A)
+    else                       -> Color(0xFF37474F)
+}
+
+private fun storyIcon(imageRes: Int): ImageVector = when (imageRes) {
+    R.drawable.story_town      -> Icons.Default.LocationCity
+    R.drawable.story_craft     -> Icons.Default.Build
+    R.drawable.story_gi        -> Icons.Default.VerifiedUser
+    R.drawable.story_challenge -> Icons.Default.Warning
+    R.drawable.story_support   -> Icons.Default.People
+    else                       -> Icons.Default.Image
+}
 
 @Composable
 fun StoryScreen(onBack: () -> Unit) {
@@ -110,19 +133,37 @@ private fun StoryCard(item: StoryItem, scrollState: ScrollState) {
                 Modifier
                     .fillMaxWidth()
                     .height(220.dp)
+                    .background(storyColor(item.imageRes))
             ) {
-                Image(
-                    painter            = painterResource(item.imageRes),
-                    contentDescription = item.title,
-                    modifier           = Modifier
-                        .fillMaxSize()
-                        .graphicsLayer {
-                            // Subtle parallax based on scroll
-                            val offset = scrollState.value.toFloat()
-                            translationY = (offset * 0.05f) // Reduced parallax
-                        },
-                    contentScale = ContentScale.Crop
+                val painter = rememberAsyncImagePainter(
+                    model = item.imageRes,
+                    error = painterResource(android.R.drawable.ic_menu_gallery)
                 )
+                
+                if (painter.state is AsyncImagePainter.State.Success) {
+                    Image(
+                        painter            = painter,
+                        contentDescription = item.title,
+                        modifier           = Modifier
+                            .fillMaxSize()
+                            .graphicsLayer {
+                                // Subtle parallax based on scroll
+                                val offset = scrollState.value.toFloat()
+                                translationY = (offset * 0.05f) // Reduced parallax
+                            },
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    // Coloured placeholder with icon
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Icon(
+                            storyIcon(item.imageRes),
+                            contentDescription = null,
+                            tint = Color.White.copy(alpha = 0.4f),
+                            modifier = Modifier.size(64.dp)
+                        )
+                    }
+                }
                 
                 // Date/Tag Badge
                 Surface(
