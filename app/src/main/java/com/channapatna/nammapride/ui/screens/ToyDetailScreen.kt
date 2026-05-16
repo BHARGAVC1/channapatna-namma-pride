@@ -14,7 +14,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
@@ -59,12 +61,33 @@ fun ToyDetailScreen(
                     Box(
                         Modifier
                             .fillMaxWidth()
-                            .height(300.dp)
-                            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+                            .height(400.dp)
                     ) {
+                        // Background gradient behind transparent toy
                         Box(
                             Modifier
                                 .fillMaxSize()
+                                .background(
+                                    Brush.radialGradient(
+                                        colors = listOf(
+                                            MaterialTheme.colorScheme.primaryContainer,
+                                            MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
+                                        )
+                                    )
+                                )
+                        )
+
+                        // Cinematic Zoom + Parallax
+                        Box(
+                            Modifier
+                                .fillMaxSize()
+                                .padding(16.dp)
+                                .graphicsLayer {
+                                    val speed = 0.5f
+                                    translationY = scrollState.value * speed
+                                    scaleX = 1.05f + (scrollState.value * 0.0001f)
+                                    scaleY = 1.05f + (scrollState.value * 0.0001f)
+                                }
                                 .then(
                                     with(sharedTransitionScope) {
                                         Modifier.sharedElement(
@@ -72,10 +95,15 @@ fun ToyDetailScreen(
                                             animatedVisibilityScope = animatedVisibilityScope
                                         )
                                     }
-                                ),
-                            contentAlignment = Alignment.Center
+                                )
                         ) {
-                            ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize())
+                            ToyImage(
+                                toyId = toy.toyId,
+                                imageUrl = toy.imageUrl,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(24.dp)
+                            )
                         }
 
                         // Floating Back Button

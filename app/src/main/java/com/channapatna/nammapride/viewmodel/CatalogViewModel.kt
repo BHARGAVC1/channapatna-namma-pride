@@ -21,13 +21,23 @@ class CatalogViewModel @Inject constructor(
     private val toggleFavoriteUseCase: ToggleFavoriteUseCase
 ) : ViewModel() {
     private val _query = MutableStateFlow("")
+    private val _selectedCategory = MutableStateFlow<String?>(null)
 
-    val uiState: StateFlow<CatalogUiState> = combine(getToysUseCase(), _query) { state, q ->
-        val filtered = if (state is UiState.Success && q.isNotBlank()) {
-            val f = state.data.filter {
-                it.name.contains(q, true) ||
-                        it.category.contains(q, true) ||
-                        it.material.contains(q, true)
+    val uiState: StateFlow<CatalogUiState> = combine(
+        getToysUseCase(), 
+        _query, 
+        _selectedCategory
+    ) { state, q, cat ->
+        val filtered = if (state is UiState.Success) {
+            val f = state.data.filter { toy ->
+                val matchesQuery = q.isBlank() || 
+                    toy.name.contains(q, true) ||
+                    toy.category.contains(q, true) ||
+                    toy.material.contains(q, true)
+                
+                val matchesCategory = cat == null || toy.category == cat
+                
+                matchesQuery && matchesCategory
             }
             if (f.isEmpty()) UiState.Empty else UiState.Success(f)
         } else {
@@ -38,6 +48,10 @@ class CatalogViewModel @Inject constructor(
 
     fun onSearchChange(q: String) {
         _query.value = q
+    }
+
+    fun onCategoryFilter(category: String?) {
+        _selectedCategory.value = category
     }
 
     fun onFavoriteClick(toy: Toy) {

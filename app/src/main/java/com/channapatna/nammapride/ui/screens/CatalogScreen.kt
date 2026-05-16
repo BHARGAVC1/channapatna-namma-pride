@@ -66,21 +66,25 @@ fun CatalogScreen(
             )
             
             // Category Quick Filters
-            val categories = listOf("All", "Spinning Toys", "Nesting Toys", "Figurines", "Rattles", "Stacking Toys", "Heritage Collection")
+            val categories = listOf("All", "Spinning Toys", "Figurines", "Rattles", "Nesting Toys", "Heritage Collection")
+            var selectedCategory by remember { mutableStateOf("All") }
+
             LazyRow(
-                contentPadding = PaddingValues(horizontal = Spacing.md, vertical = Spacing.sm),
-                horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+                modifier = Modifier.padding(vertical = Spacing.xs),
+                horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                contentPadding = PaddingValues(horizontal = Spacing.md)
             ) {
                 items(categories) { cat ->
-                    val isSelected = if (cat == "All") uiState.query.isEmpty() else uiState.query.equals(cat, true)
                     FilterChip(
-                        selected = isSelected,
-                        onClick = { viewModel.onSearchChange(if (cat == "All") "" else cat) },
-                        label = { Text(cat) },
-                        shape = RoundedCornerShape(12.dp),
-                        colors = FilterChipDefaults.filterChipColors(
-                            selectedContainerColor = MaterialTheme.colorScheme.primary,
-                            selectedLabelColor = MaterialTheme.colorScheme.onPrimary
+                        selected = selectedCategory == cat,
+                        onClick  = {
+                            selectedCategory = cat
+                            viewModel.onCategoryFilter(if (cat == "All") null else cat)
+                        },
+                        label    = { Text(cat, style = MaterialTheme.typography.labelMedium) },
+                        colors   = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                            selectedLabelColor     = MaterialTheme.colorScheme.primary
                         )
                     )
                 }

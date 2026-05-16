@@ -241,10 +241,10 @@ fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modif
     val resId = toyImageRes(toyId)
     if (resId != null) {
         Image(
-            painter = painterResource(resId),
+            painter            = painterResource(resId),
             contentDescription = "Handcrafted Toy $toyId",
-            modifier = modifier,
-            contentScale = ContentScale.Fit
+            modifier           = modifier,
+            contentScale       = ContentScale.Fit
         )
     } else if (!imageUrl.isNullOrBlank()) {
         AsyncImage(
@@ -265,7 +265,7 @@ fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modif
                 imageVector = Icons.Default.SmartToy,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(64.dp)
             )
         }
     }
