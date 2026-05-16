@@ -74,7 +74,12 @@ fun HomeScreen(
 
     LaunchedEffect(uiState.verifyState) {
         if (uiState.verifyState is UiState.Success) {
-            haptic.performHapticFeedback(HapticFeedbackType.Confirm)
+            // Confirm haptic with LongPress fallback
+            try {
+                haptic.performHapticFeedback(HapticFeedbackType.Confirm)
+            } catch (e: Exception) {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+            }
             onVerified((uiState.verifyState as UiState.Success).data.toy.toyId)
             viewModel.reset()
         }

@@ -129,28 +129,53 @@ fun ResultScreen(
                                 }
                             }
                         }
+                        
                         Spacer(Modifier.height(Spacing.md))
-                    }
 
-                    // Floating Share Button
-                    FloatingActionButton(
-                        onClick = {
-                            val sendIntent: Intent = Intent().apply {
-                                action = Intent.ACTION_SEND
-                                putExtra(Intent.EXTRA_TEXT, "Check out this authentic Channapatna Toy: ${toy.name} (Verified ID: ${toy.toyId})")
-                                type = "text/plain"
+                        // Share + artisan action row
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+                        ) {
+                            // Share this toy's story
+                            OutlinedButton(
+                                onClick = {
+                                    val shareText = buildString {
+                                        appendLine("✅ Verified authentic Channapatna toy!")
+                                        appendLine()
+                                        appendLine("🪆 ${toy.name}")
+                                        appendLine("🎨 ${toy.material}")
+                                        appendLine("🔖 ID: ${toy.toyId}")
+                                        appendLine("🛡 Code: ${toy.verificationCode}")
+                                        appendLine()
+                                        append("Verified with Namma Pride app — supporting Channapatna artisans.")
+                                    }
+                                    val sendIntent = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
+                                        type = "text/plain"
+                                        putExtra(android.content.Intent.EXTRA_TEXT, shareText)
+                                    }
+                                    context.startActivity(android.content.Intent.createChooser(sendIntent, "Share toy story"))
+                                },
+                                modifier = Modifier.weight(1f).height(48.dp),
+                                shape    = RoundedCornerShape(16.dp)
+                            ) {
+                                Icon(Icons.Default.Share, null, modifier = Modifier.size(16.dp))
+                                Spacer(Modifier.width(6.dp))
+                                Text("Share")
                             }
-                            val shareIntent = Intent.createChooser(sendIntent, null)
-                            context.startActivity(shareIntent)
-                        },
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .padding(24.dp),
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary,
-                        shape = CircleShape
-                    ) {
-                        Icon(Icons.Default.Share, contentDescription = "Share verification")
+
+                            // View artisan button  
+                            if (uiState.artisanState is UiState.Success) {
+                                val artisan = (uiState.artisanState as UiState.Success).data
+                                ChannapatnaButton(
+                                    text     = "Meet Artisan",
+                                    icon     = Icons.Default.Person,
+                                    onClick  = { onArtisanClick(artisan.artisanId) },
+                                    modifier = Modifier.weight(1f)
+                                )
+                            }
+                        }
+                        Spacer(Modifier.height(Spacing.md))
                     }
                 }
             }
