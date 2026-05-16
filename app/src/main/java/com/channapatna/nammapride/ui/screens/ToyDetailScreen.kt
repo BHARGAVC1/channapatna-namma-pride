@@ -102,7 +102,8 @@ fun ToyDetailScreen(
                                 imageUrl = toy.imageUrl,
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .padding(24.dp)
+                                    .padding(24.dp),
+                                contentDescription = toy.name
                             )
                         }
 

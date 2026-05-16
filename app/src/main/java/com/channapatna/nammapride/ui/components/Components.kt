@@ -237,12 +237,17 @@ private fun toyImageRes(toyId: String): Int? = when (toyId) {
 }
 
 @Composable
-fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modifier) {
+fun ToyImage(
+    toyId: String,
+    imageUrl: String? = null,
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null
+) {
     val resId = toyImageRes(toyId)
     if (resId != null) {
         Image(
             painter            = painterResource(resId),
-            contentDescription = "Handcrafted Toy $toyId",
+            contentDescription = contentDescription ?: "Toy image",
             modifier           = modifier,
             contentScale       = ContentScale.Fit
         )
@@ -252,7 +257,7 @@ fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modif
                 .data(imageUrl)
                 .crossfade(true)
                 .build(),
-            contentDescription = "Handcrafted Toy $toyId",
+            contentDescription = contentDescription ?: "Toy image",
             modifier = modifier,
             contentScale = ContentScale.Fit
         )
@@ -282,7 +287,10 @@ fun ToyCard(
 ) {
     val haptic = LocalHapticFeedback.current
     Surface(
-        modifier = Modifier.fillMaxWidth().clickable(onClick = onClick),
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 72.dp)
+            .clickable(onClick = onClick),
         color    = MaterialTheme.colorScheme.surfaceVariant,
         shape    = RoundedCornerShape(24.dp),
         border   = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),
@@ -303,7 +311,7 @@ fun ToyCard(
                             }
                         } else Modifier
                     )
-            ) { ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize()) }
+            ) { ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize(), contentDescription = toy.name) }
             Spacer(Modifier.width(14.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(toy.name, style = MaterialTheme.typography.titleMedium)

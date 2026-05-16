@@ -86,7 +86,7 @@ fun ResultScreen(
                                     .height(260.dp)
                                     .clip(RoundedCornerShape(28.dp))
                             ) {
-                                ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize())
+                                ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize(), contentDescription = toy.name)
                             }
                         }
 

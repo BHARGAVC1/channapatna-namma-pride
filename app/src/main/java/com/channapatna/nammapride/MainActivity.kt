@@ -27,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.channapatna.nammapride.navigation.AppNavGraph
 import com.channapatna.nammapride.navigation.Routes
 import com.channapatna.nammapride.ui.theme.ChannapatnaNammaPrideTheme
+import androidx.core.view.WindowCompat
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +35,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Adjust status bar icon color for light theme
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = true
+            isAppearanceLightNavigationBars = true
+        }
+
         setContent {
             ChannapatnaNammaPrideTheme {
                 MainScreen()
