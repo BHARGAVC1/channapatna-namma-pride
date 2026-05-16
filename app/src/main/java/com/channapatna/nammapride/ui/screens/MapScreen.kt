@@ -16,9 +16,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.channapatna.nammapride.data.local.entity.Artisan
 import com.channapatna.nammapride.data.local.entity.UiState
 import com.channapatna.nammapride.ui.components.*
 import com.channapatna.nammapride.viewmodel.ArtisanViewModel
@@ -63,6 +65,18 @@ fun MapScreen(
                     this.position = CameraPosition.fromLatLngZoom(position, 16f)
                 }
 
+                var mapLoadFailed by remember { mutableStateOf(false) }
+                var mapIsLoaded by remember { mutableStateOf(false) }
+
+                LaunchedEffect(mapIsLoaded) {
+                    if (!mapIsLoaded) {
+                        kotlinx.coroutines.delay(5000)
+                        if (!mapIsLoaded) {
+                            mapLoadFailed = true
+                        }
+                    }
+                }
+
                 // Card slide-up animation
                 var cardVisible by remember { mutableStateOf(false) }
                 LaunchedEffect(Unit) {
@@ -71,36 +85,41 @@ fun MapScreen(
                 }
 
                 Box(Modifier.fillMaxSize()) {
-                    GoogleMap(
-                        modifier             = Modifier.fillMaxSize(),
-                        cameraPositionState  = cameraState,
-                        properties           = MapProperties(
-                            isMyLocationEnabled = locationPermissionState.status.isGranted,
-                            mapType = mapType,
-                            isIndoorEnabled = true,
-                            isTrafficEnabled = true
-                        ),
-                        uiSettings           = MapUiSettings(
-                            zoomControlsEnabled = false,
-                            myLocationButtonEnabled = locationPermissionState.status.isGranted,
-                            compassEnabled = true,
-                            mapToolbarEnabled = true,
-                            rotationGesturesEnabled = true,
-                            tiltGesturesEnabled = true
-                        )
-                    ) {
-                        Marker(
-                            state   = MarkerState(position = position),
-                            title   = artisan.name,
-                            snippet = "Tap for directions",
-                            onClick = {
-                                val gmmIntentUri = Uri.parse("google.navigation:q=${artisan.latitude},${artisan.longitude}")
-                                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-                                mapIntent.setPackage("com.google.android.apps.maps")
-                                context.startActivity(mapIntent)
-                                true
-                            }
-                        )
+                    if (mapLoadFailed) {
+                        MapFallbackView(artisan = artisan)
+                    } else {
+                        GoogleMap(
+                            modifier             = Modifier.fillMaxSize(),
+                            cameraPositionState  = cameraState,
+                            onMapLoaded          = { mapIsLoaded = true },
+                            properties           = MapProperties(
+                                isMyLocationEnabled = locationPermissionState.status.isGranted,
+                                mapType = mapType,
+                                isIndoorEnabled = true,
+                                isTrafficEnabled = true
+                            ),
+                            uiSettings           = MapUiSettings(
+                                zoomControlsEnabled = false,
+                                myLocationButtonEnabled = locationPermissionState.status.isGranted,
+                                compassEnabled = true,
+                                mapToolbarEnabled = true,
+                                rotationGesturesEnabled = true,
+                                tiltGesturesEnabled = true
+                            )
+                        ) {
+                            Marker(
+                                state   = MarkerState(position = position),
+                                title   = artisan.name,
+                                snippet = "Tap for directions",
+                                onClick = {
+                                    val gmmIntentUri = Uri.parse("google.navigation:q=${artisan.latitude},${artisan.longitude}")
+                                    val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                                    mapIntent.setPackage("com.google.android.apps.maps")
+                                    context.startActivity(mapIntent)
+                                    true
+                                }
+                            )
+                        }
                     }
 
                     // Map Type Toggle (Floating)
@@ -176,6 +195,49 @@ fun MapScreen(
                 }
             }
             else -> {}
+        }
+    }
+}
+
+@Composable
+private fun MapFallbackView(artisan: Artisan) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(
+            Icons.Outlined.Map, null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
+            modifier = Modifier.size(64.dp)
+        )
+        Spacer(Modifier.height(16.dp))
+        Text(
+            "Map unavailable",
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(Modifier.height(8.dp))
+        Text(
+            "${artisan.name} is located in ${artisan.locationText}",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center
+        )
+        Spacer(Modifier.height(24.dp))
+        // Open in Google Maps app
+        val ctx = LocalContext.current
+        OutlinedButton(onClick = {
+            val uri = Uri.parse(
+                "geo:${artisan.latitude},${artisan.longitude}?q=${artisan.latitude},${artisan.longitude}(${artisan.name})"
+            )
+            ctx.startActivity(Intent(Intent.ACTION_VIEW, uri))
+        }) {
+            Icon(Icons.Default.LocationOn, null, modifier = Modifier.size(16.dp))
+            Spacer(Modifier.width(8.dp))
+            Text("Open in Google Maps")
         }
     }
 }
