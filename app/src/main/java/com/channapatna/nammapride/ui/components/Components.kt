@@ -194,21 +194,14 @@ fun ArtisanInitialsAvatar(name: String, size: Int = 48, photoUrl: String? = null
         Modifier
             .size(size.dp)
             .clip(CircleShape)
-            .background(
-                Brush.radialGradient(
-                    listOf(
-                        MaterialTheme.colorScheme.primaryContainer,
-                        MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
-                    )
-                )
-            ),
+            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)),
         contentAlignment = Alignment.Center
     ) {
         if (!photoUrl.isNullOrBlank()) {
             ArtisanImage(photoUrl, Modifier.fillMaxSize())
         } else {
             val initials = name.split(" ").take(2).mapNotNull { it.firstOrNull()?.uppercaseChar() }.joinToString("")
-            Text(initials, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+            Text(initials, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -222,11 +215,11 @@ fun VerifiedBadge() {
         enter   = scaleIn(initialScale = 0.5f, animationSpec = spring(Spring.DampingRatioMediumBouncy)) + fadeIn()
     ) {
         Row(
-            modifier = Modifier.clip(RoundedCornerShape(20.dp)).background(MaterialTheme.colorScheme.primaryContainer).padding(horizontal = 14.dp, vertical = 7.dp),
+            modifier = Modifier.clip(RoundedCornerShape(20.dp)).background(MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.4f)).padding(horizontal = 12.dp, vertical = 6.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(7.dp)
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
-            Icon(Icons.Default.VerifiedUser, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(17.dp))
+            Icon(Icons.Default.Verified, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(16.dp))
             Text("Verified Authentic", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
         }
     }
@@ -250,7 +243,7 @@ fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modif
             painter = painterResource(resId),
             contentDescription = "Handcrafted Toy $toyId",
             modifier = modifier,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Fit
         )
     } else if (!imageUrl.isNullOrBlank()) {
         AsyncImage(
@@ -260,7 +253,7 @@ fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modif
                 .build(),
             contentDescription = "Handcrafted Toy $toyId",
             modifier = modifier,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Fit
         )
     } else {
         Box(
@@ -313,21 +306,10 @@ fun ToyCard(
             Spacer(Modifier.width(14.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(toy.name, style = MaterialTheme.typography.titleMedium)
-                Text(toy.material, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    CategoryChip(toy.category)
-                    Text(toy.price, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
-                }
+                Text(toy.category, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(toy.price, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
             }
             if (onFavoriteToggle != null) {
-                val scale by animateFloatAsState(
-                    targetValue = if (toy.isFavorite) 1.25f else 1f,
-                    animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
-                        stiffness = Spring.StiffnessLow
-                    ),
-                    label = "favoriteScale"
-                )
                 IconButton(onClick = {
                     haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     onFavoriteToggle()
@@ -335,13 +317,11 @@ fun ToyCard(
                     Icon(
                         imageVector = if (toy.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = "Favorite",
-                        tint = if (toy.isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.scale(scale)
+                        tint = if (toy.isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-            } else {
-                Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
             }
+            Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
         }
     }
 }
@@ -372,7 +352,7 @@ fun ArtisanCard(
                     }
                 } else Modifier
             ) {
-                ArtisanInitialsAvatar(artisan.name, photoUrl = artisan.photoUrl)
+                ArtisanInitialsAvatar(artisan.name, size = 52, photoUrl = artisan.photoUrl)
             }
             Spacer(Modifier.width(Spacing.md))
             Column(Modifier.weight(1f)) {

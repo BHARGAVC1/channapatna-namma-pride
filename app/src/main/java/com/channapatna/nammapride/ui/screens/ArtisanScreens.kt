@@ -16,9 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -54,7 +52,7 @@ fun ArtisanListScreen(
                 is UiState.Error   -> ErrorView(s.message)
                 is UiState.Empty   -> PremiumEmptyState(
                     title = "No artisans found",
-                    subtitle = "We couldn't load the artisan directory. Check your connection.",
+                    subtitle = "We couldn't load the artisan directory.",
                     icon = Icons.Default.PeopleOutline
                 )
                 is UiState.Success -> {
@@ -65,7 +63,7 @@ fun ArtisanListScreen(
                     ) {
                         item {
                             Text(
-                                "${artisans.size} registered artisan${if (artisans.size != 1) "s" else ""}",
+                                "${artisans.size} registered artisans",
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                             )
@@ -104,7 +102,8 @@ fun ArtisanProfileScreen(
 
     LaunchedEffect(artisanId) { viewModel.loadArtisan(artisanId) }
 
-    Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+    Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+        AppTopBar("Artisan Profile", onBack)
         when (uiState.artisanState) {
             is UiState.Loading -> LoadingView()
             is UiState.Error -> ErrorView((uiState.artisanState as UiState.Error).message)
@@ -115,152 +114,104 @@ fun ArtisanProfileScreen(
                     Modifier
                         .fillMaxSize()
                         .verticalScroll(scrollState)
+                        .padding(Spacing.lg),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.lg)
                 ) {
-                    // Premium Hero Header with Parallax Portrait
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(340.dp)
+                    // Clean Profile Header
+                    Surface(
+                        shape  = RoundedCornerShape(24.dp),
+                        color  = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
                     ) {
-                        val sharedModifier = with(sharedTransitionScope) {
-                            Modifier.sharedElement(
-                                rememberSharedContentState(key = "artisan-avatar-${artisan.artisanId}"),
-                                animatedVisibilityScope = animatedVisibilityScope
-                            )
-                        }
-
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .graphicsLayer {
-                                    translationY = scrollState.value * 0.4f
-                                    scaleX = 1f + (scrollState.value * 0.0005f)
-                                    scaleY = 1f + (scrollState.value * 0.0005f)
-                                }
-                                .then(sharedModifier)
-                        ) {
-                            ArtisanImage(artisan.photoUrl, Modifier.fillMaxSize())
-                        }
-
-                        // Scrim for readability
-                        Box(
-                            Modifier
-                                .fillMaxSize()
-                                .background(
-                                    Brush.verticalGradient(
-                                        listOf(Color.Transparent, Color.Black.copy(0.7f)),
-                                        startY = 400f
-                                    )
-                                )
-                        )
-
-                        // Floating Back Button
-                        IconButton(
-                            onClick = onBack,
-                            modifier = Modifier
-                                .padding(Spacing.lg)
-                                .statusBarsPadding()
-                                .size(40.dp)
-                                .background(Color.Black.copy(0.3f), CircleShape)
-                        ) {
-                            Icon(Icons.Default.ArrowBack, null, tint = Color.White)
-                        }
-
-                        // Title Overlay
-                        Column(
-                            modifier = Modifier
-                                .align(Alignment.BottomStart)
-                                .padding(Spacing.lg)
-                        ) {
-                            Text(
-                                artisan.name,
-                                style = MaterialTheme.typography.headlineLarge,
-                                color = Color.White
-                            )
-                            Text(
-                                artisan.craftType,
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.White.copy(0.8f)
-                            )
-                        }
-                    }
-
-                    Column(
-                        Modifier.padding(Spacing.lg),
-                        verticalArrangement = Arrangement.spacedBy(Spacing.lg)
-                    ) {
-                        // Quick Stats
-                        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
-                            StatCard("Experience", "${artisan.experienceYears} Years", Modifier.weight(1f))
-                            StatCard("Origin", "Channapatna", Modifier.weight(1f))
-                        }
-
-                        // The Story / Legacy
-                        SectionHeader(title = "The Legacy", subtitle = "Heritage passed down through generations")
-                        Surface(
-                            shape = RoundedCornerShape(24.dp),
-                            color = MaterialTheme.colorScheme.surfaceVariant,
-                            border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
-                        ) {
-                            Text(
-                                artisan.bio,
-                                modifier = Modifier.padding(Spacing.lg),
-                                style = MaterialTheme.typography.bodyLarge,
-                                lineHeight = 28.sp,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-
-                        // Workshop Info
-                        SectionHeader(title = "Workshop Details", subtitle = "Visit the source of the craft")
-                        Surface(
-                            shape = RoundedCornerShape(24.dp),
-                            color = MaterialTheme.colorScheme.surfaceVariant
-                        ) {
-                            Column(Modifier.padding(horizontal = Spacing.md)) {
-                                Spacer(Modifier.height(Spacing.sm))
-                                InfoRow("Artisan ID", artisan.artisanId)
-                                InfoRow("Location", artisan.locationText)
-                                InfoRow("Coord.", "${artisan.latitude}, ${artisan.longitude}")
-                            }
-                        }
-
-                        // Actions
                         Row(
-                            modifier = Modifier.fillMaxWidth(),
+                            Modifier.padding(Spacing.lg),
+                            verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(Spacing.md)
                         ) {
-                            // Secondary In-App Map
-                            OutlinedButton(
-                                onClick = onMapClick,
-                                modifier = Modifier.weight(1f).height(56.dp),
-                                shape = RoundedCornerShape(16.dp)
+                            Box(
+                                modifier = with(sharedTransitionScope) {
+                                    Modifier.sharedElement(
+                                        rememberSharedContentState(key = "artisan-avatar-${artisan.artisanId}"),
+                                        animatedVisibilityScope = animatedVisibilityScope
+                                    )
+                                }
                             ) {
-                                Icon(Icons.Outlined.Map, null)
-                                Spacer(Modifier.width(8.dp))
-                                Text("Preview Map")
+                                ArtisanInitialsAvatar(artisan.name, 80, photoUrl = artisan.photoUrl)
                             }
-
-                            // Primary Navigation Call
-                            Button(
-                                onClick = {
-                                    val uri = Uri.parse("google.navigation:q=${artisan.latitude},${artisan.longitude}")
-                                    val intent = Intent(Intent.ACTION_VIEW, uri)
-                                    intent.setPackage("com.google.android.apps.maps")
-                                    context.startActivity(intent)
-                                },
-                                modifier = Modifier.weight(1f).height(56.dp),
-                                shape = RoundedCornerShape(16.dp),
-                                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                            ) {
-                                Icon(Icons.Default.Directions, null)
-                                Spacer(Modifier.width(8.dp))
-                                Text("Navigate")
+                            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                                Text(artisan.name, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.onBackground)
+                                Text(artisan.craftType, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Spacing.xs)) {
+                                    Icon(Icons.Default.LocationOn, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(14.dp))
+                                    Text(artisan.locationText, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                }
                             }
                         }
-                        
-                        Spacer(Modifier.height(40.dp))
                     }
+
+                    // Stat cards
+                    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
+                        StatCard("Experience", "${artisan.experienceYears} Years", Modifier.weight(1f))
+                        StatCard("Craft", "Traditional", Modifier.weight(1f))
+                    }
+
+                    // Bio
+                    SectionHeader(title = "The Legacy", subtitle = "Master craftsman from Channapatna")
+                    Surface(
+                        shape  = RoundedCornerShape(20.dp),
+                        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)),
+                        color  = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                    ) {
+                        Text(
+                            artisan.bio, 
+                            modifier = Modifier.padding(Spacing.md),
+                            style = MaterialTheme.typography.bodyMedium, 
+                            color = MaterialTheme.colorScheme.onSurfaceVariant, 
+                            lineHeight = 24.sp
+                        )
+                    }
+
+                    // Details
+                    Surface(
+                        shape  = RoundedCornerShape(20.dp),
+                        color  = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                    ) {
+                        Column(Modifier.padding(horizontal = Spacing.md)) {
+                            Spacer(Modifier.height(Spacing.sm))
+                            InfoRow("Artisan ID", artisan.artisanId)
+                            InfoRow("Workshop", artisan.locationText)
+                            InfoRow("Years Active", "${artisan.experienceYears} years")
+                        }
+                    }
+
+                    // Actions
+                    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
+                        OutlinedButton(
+                            onClick = onMapClick,
+                            modifier = Modifier.weight(1f).height(56.dp),
+                            shape = RoundedCornerShape(14.dp)
+                        ) {
+                            Icon(Icons.Outlined.Map, null)
+                            Spacer(Modifier.width(8.dp))
+                            Text("Preview Map")
+                        }
+                        
+                        Button(
+                            onClick = {
+                                val uri = Uri.parse("google.navigation:q=${artisan.latitude},${artisan.longitude}")
+                                val intent = Intent(Intent.ACTION_VIEW, uri)
+                                intent.setPackage("com.google.android.apps.maps")
+                                context.startActivity(intent)
+                            },
+                            modifier = Modifier.weight(1f).height(56.dp),
+                            shape = RoundedCornerShape(14.dp)
+                        ) {
+                            Icon(Icons.Default.Directions, null)
+                            Spacer(Modifier.width(8.dp))
+                            Text("Navigate")
+                        }
+                    }
+                    Spacer(Modifier.height(Spacing.md))
                 }
             }
             else -> {}
@@ -272,10 +223,9 @@ fun ArtisanProfileScreen(
 private fun StatCard(label: String, value: String, modifier: Modifier) {
     Surface(
         modifier = modifier,
-        shape    = RoundedCornerShape(24.dp),
-        color    = MaterialTheme.colorScheme.surfaceVariant,
-        border   = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),
-        shadowElevation = 2.dp
+        shape    = RoundedCornerShape(20.dp),
+        color    = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+        border   = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
     ) {
         Column(Modifier.padding(Spacing.md), verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
             Text(label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f))
