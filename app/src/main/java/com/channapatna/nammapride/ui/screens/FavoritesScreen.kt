@@ -50,21 +50,14 @@ fun FavoritesScreen(
                         contentPadding = PaddingValues(horizontal = Spacing.md, vertical = Spacing.md),
                         verticalArrangement = Arrangement.spacedBy(Spacing.md)
                     ) {
-                        itemsIndexed(toys, key = { _, t -> t.toyId }) { index, toy ->
-                            var visible by remember { mutableStateOf(false) }
-                            LaunchedEffect(toy.toyId) {
-                                kotlinx.coroutines.delay(index * 40L)
-                                visible = true
-                            }
-                            if (visible) {
-                                ToyCard(
-                                    toy = toy,
-                                    onFavoriteToggle = { viewModel.onToggleFavorite(toy) },
-                                    sharedTransitionScope = sharedTransitionScope,
-                                    animatedVisibilityScope = animatedVisibilityScope,
-                                    onClick = { onToyClick(toy.toyId) }
-                                )
-                            }
+                        itemsIndexed(toys, key = { _, t -> t.toyId }) { _, toy ->
+                            ToyCard(
+                                toy = toy,
+                                onFavoriteToggle = { viewModel.onToggleFavorite(toy) },
+                                sharedTransitionScope = sharedTransitionScope,
+                                animatedVisibilityScope = animatedVisibilityScope,
+                                onClick = { onToyClick(toy.toyId) }
+                            )
                         }
                     }
                 }

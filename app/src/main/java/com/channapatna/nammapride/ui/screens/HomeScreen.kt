@@ -160,10 +160,13 @@ fun HomeScreen(
             label = "searchPadding"
         )
         
+        val density = androidx.compose.ui.platform.LocalDensity.current
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .offset(y = searchOffset)
+                .graphicsLayer {
+                    translationY = with(density) { searchOffset.toPx() }
+                }
                 .padding(horizontal = searchPadding)
                 .statusBarsPadding()
         ) {

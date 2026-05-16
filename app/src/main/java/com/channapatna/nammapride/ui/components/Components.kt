@@ -221,7 +221,10 @@ fun ToyImage(toyId: String, imageUrl: String? = null, modifier: Modifier = Modif
         )
     } else if (!imageUrl.isNullOrBlank()) {
         AsyncImage(
-            model = imageUrl,
+            model = coil.request.ImageRequest.Builder(androidx.compose.ui.platform.LocalContext.current)
+                .data(imageUrl)
+                .crossfade(true)
+                .build(),
             contentDescription = "Handcrafted Toy $toyId",
             modifier = modifier,
             contentScale = ContentScale.Crop

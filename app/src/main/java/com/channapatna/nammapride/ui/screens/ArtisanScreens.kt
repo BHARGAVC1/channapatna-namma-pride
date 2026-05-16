@@ -63,26 +63,13 @@ fun ArtisanListScreen(
                             )
                             Spacer(Modifier.height(6.dp))
                         }
-                        itemsIndexed(artisans, key = { _, a -> a.artisanId }) { index, artisan ->
-                            var visible by remember { mutableStateOf(false) }
-                            LaunchedEffect(artisan.artisanId) {
-                                kotlinx.coroutines.delay(index * 50L)
-                                visible = true
-                            }
-                            AnimatedVisibility(
-                                visible = visible,
-                                enter   = slideInHorizontally(
-                                    initialOffsetX = { -it / 3 },
-                                    animationSpec  = tween(280, easing = FastOutSlowInEasing)
-                                ) + fadeIn(tween(250))
-                            ) {
-                                ArtisanCard(
-                                    artisan = artisan,
-                                    onClick = { onArtisanClick(artisan.artisanId) },
-                                    sharedTransitionScope = sharedTransitionScope,
-                                    animatedVisibilityScope = animatedVisibilityScope
-                                )
-                            }
+                        itemsIndexed(artisans, key = { _, a -> a.artisanId }) { _, artisan ->
+                            ArtisanCard(
+                                artisan = artisan,
+                                onClick = { onArtisanClick(artisan.artisanId) },
+                                sharedTransitionScope = sharedTransitionScope,
+                                animatedVisibilityScope = animatedVisibilityScope
+                            )
                         }
                     }
                 }
