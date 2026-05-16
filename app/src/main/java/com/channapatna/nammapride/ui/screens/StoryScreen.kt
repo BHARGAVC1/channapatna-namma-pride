@@ -7,87 +7,162 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.channapatna.nammapride.R
 import com.channapatna.nammapride.ui.components.AppTopBar
 import com.channapatna.nammapride.ui.theme.*
 
-private data class StoryItem(val title: String, val body: String, val imageRes: Int)
+private data class StoryItem(val title: String, val body: String, val imageRes: Int, val date: String)
 
 private val storyItems = listOf(
-    StoryItem("A Town of Toys",
-        "Channapatna, 60 km from Bengaluru, has been producing wooden toys for over 200 years. Known as \"Gombegala Ooru\" (Town of Toys) in Kannada, it was under Hyder Ali's reign that Persian craftsmen first introduced lacquerware to local artisans.",
-        R.drawable.story_town),
-    StoryItem("The Craft",
-        "Artisans use locally sourced ivory wood and rubberwood, turned on traditional lathes and coated with natural lacquer made from plant extracts. Toys are painted with mineral and vegetable pigments — no synthetic chemicals touch the final product.",
-        R.drawable.story_craft),
-    StoryItem("GI Tag Protection",
-        "In 2005, Channapatna toys received a Geographical Indication (GI) tag, recognising them as a product unique to this region. This legal protection helps distinguish genuine handcrafted toys from mass-produced imitations.",
-        R.drawable.story_gi),
-    StoryItem("The Challenge Today",
-        "Despite the GI tag, machine-made lookalikes flood the market. Buyers cannot easily tell the difference. Genuine artisans lose livelihood and recognition. This app puts verification power directly in the buyer's hands.",
-        R.drawable.story_challenge),
-    StoryItem("Supporting Artisans",
-        "Every verified purchase directly supports a registered Channapatna artisan. When you scan a QR code with this app, you're not just buying a toy — you're connecting with a person, their family, and a 200-year-old tradition.",
-        R.drawable.story_support),
+    StoryItem(
+        "Persian Origins (1780s)",
+        "The legacy began over 200 years ago when Tipu Sultan, the ruler of Mysore, invited Persian artisans to train local craftsmen in the art of lacquerware. This unique fusion of Persian skill and Indian wood created a world-renowned craft.",
+        R.drawable.story_town,
+        "The Beginning"
+    ),
+    StoryItem(
+        "The Sacred Ivory Wood",
+        "At the heart of every toy is 'Aale Mara' (Ivory Wood). It is chosen for its smooth grain and light color, which perfectly absorbs the organic lacquer. Today, artisans also use sustainable rubberwood to protect our local forests.",
+        R.drawable.story_craft,
+        "The Material"
+    ),
+    StoryItem(
+        "Liquid Gold: Lacquer",
+        "Natural lacquer is a secret recipe made from insect resin and vegetable dyes. When applied to wood spinning at high speeds, the heat melts the lacquer, creating the signature high-gloss mirror finish that never fades.",
+        R.drawable.story_gi,
+        "The Technique"
+    ),
+    StoryItem(
+        "Gombegala Ooru",
+        "Channapatna earned the title 'Town of Toys' (Gombegala Ooru) as entire streets were transformed into humming workshops. Every house was a factory, and every family member was a guardian of the craft.",
+        R.drawable.story_challenge,
+        "The Identity"
+    ),
+    StoryItem(
+        "Preserving the Pride",
+        "In a world of plastic and machines, Channapatna Namma Pride is our digital shield. By verifying every toy, we ensure that the 200-year-old sweat of our master artisans is recognized and rewarded.",
+        R.drawable.story_support,
+        "The Mission"
+    ),
 )
 
 @Composable
 fun StoryScreen(onBack: () -> Unit) {
     val scrollState = rememberScrollState()
-    Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
-        AppTopBar("The Story", onBack)
-        Column(
-            Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(horizontal = 20.dp, vertical = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            storyItems.forEach { item ->
-                StoryCard(item, scrollState)
+    
+    Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+        Column(Modifier.fillMaxSize()) {
+            AppTopBar("The Story", onBack)
+            
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
+                    .padding(Spacing.lg),
+                verticalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                // Header Intro
+                Column(verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
+                    Text(
+                        "A 200-Year Journey",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontFamily = FrauncesFontFamily,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                    Text(
+                        "From the courts of Tipu Sultan to the palm of your hand.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+
+                storyItems.forEachIndexed { index, item ->
+                    StoryCard(item, scrollState, index)
+                }
+                
+                Spacer(Modifier.height(40.dp))
             }
-            Spacer(Modifier.height(8.dp))
         }
     }
 }
 
 @Composable
-private fun StoryCard(item: StoryItem, scrollState: ScrollState) {
+private fun StoryCard(item: StoryItem, scrollState: ScrollState, index: Int) {
     Surface(
-        shape  = RoundedCornerShape(16.dp),
+        shape  = RoundedCornerShape(28.dp),
         color  = MaterialTheme.colorScheme.surface,
-        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline),
-        shadowElevation = 1.dp
+        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)),
+        shadowElevation = 2.dp
     ) {
         Column {
-            // Story illustration
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .height(180.dp)
-                    .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+                    .height(220.dp)
             ) {
                 Image(
                     painter            = painterResource(item.imageRes),
                     contentDescription = item.title,
                     modifier           = Modifier
-                        .fillMaxWidth()
-                        .height(250.dp)
+                        .fillMaxSize()
                         .graphicsLayer {
-                            translationY = scrollState.value * 0.15f
+                            // Subtle parallax based on scroll
+                            val offset = scrollState.value.toFloat()
+                            translationY = (offset * 0.1f) - (index * 20f)
                         },
                     contentScale = ContentScale.Crop
                 )
+                
+                // Date/Tag Badge
+                Surface(
+                    modifier = Modifier.align(Alignment.TopStart).padding(Spacing.md),
+                    shape = RoundedCornerShape(12.dp),
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.9f)
+                ) {
+                    Text(
+                        item.date,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                // Gradient Overlay
+                Box(
+                    Modifier.fillMaxSize().background(
+                        Brush.verticalGradient(
+                            listOf(Color.Transparent, Color.Black.copy(alpha = 0.4f)),
+                            startY = 300f
+                        )
+                    )
+                )
             }
-            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(item.title, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
-                Text(item.body, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            
+            Column(Modifier.padding(Spacing.lg), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                Text(
+                    item.title,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    item.body,
+                    style = MaterialTheme.typography.bodyMedium,
+                    lineHeight = 24.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         }
     }
