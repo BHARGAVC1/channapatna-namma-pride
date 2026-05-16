@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -54,9 +55,22 @@ class HomeViewModel @Inject constructor(
             return
         }
         viewModelScope.launch {
-            _userState.value = _userState.value.copy(verifyState = UiState.Loading)
+            _userState.update { it.copy(verifyState = UiState.Loading) }
             val result = verifyToyUseCase(id)
-            _userState.value = _userState.value.copy(verifyState = result)
+            
+            if (result is UiState.Success) {
+                val currentRecent = _userState.value.recentlyVerified
+                val updatedRecent = (listOf(result.data.toy) + currentRecent)
+                    .distinctBy { it.toyId }
+                    .take(5)
+                
+                _userState.update { it.copy(
+                    verifyState = result,
+                    recentlyVerified = updatedRecent
+                )}
+            } else {
+                _userState.update { it.copy(verifyState = result) }
+            }
         }
     }
 

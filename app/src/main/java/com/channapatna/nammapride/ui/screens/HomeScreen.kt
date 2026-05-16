@@ -166,6 +166,23 @@ fun HomeScreen(
                     ActionCard("Saved", "Your favorites", Icons.Outlined.FavoriteBorder, Modifier.weight(1f), onFavoritesClick)
                     ActionCard("The Story", "Heritage", Icons.Outlined.AutoStories, Modifier.weight(1f), onStoryClick)
                 }
+
+                if (uiState.recentlyVerified.isNotEmpty()) {
+                    Spacer(Modifier.height(Spacing.sm))
+                    SectionHeader(
+                        title    = "Recently verified",
+                        subtitle = "Toys you've authenticated"
+                    )
+                    LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                        contentPadding = PaddingValues(horizontal = 2.dp)
+                    ) {
+                        items(uiState.recentlyVerified, key = { it.toyId }) { toy ->
+                            RecentToyChip(toy = toy, onClick = { onVerified(toy.toyId) })
+                        }
+                    }
+                }
+
                 Spacer(Modifier.height(120.dp)) // Extra space for bottom nav
             }
         }
@@ -221,6 +238,50 @@ fun HomeScreen(
                         unfocusedBorderColor = Color.Transparent
                     ),
                     singleLine = true
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun RecentToyChip(toy: Toy, onClick: () -> Unit) {
+    Surface(
+        modifier = Modifier
+            .width(140.dp)
+            .clickable(onClick = onClick),
+        shape    = RoundedCornerShape(16.dp),
+        color    = MaterialTheme.colorScheme.surfaceVariant,
+        border   = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f))
+    ) {
+        Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Box(
+                Modifier
+                    .size(60.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                ToyImage(toy.toyId, toy.imageUrl, Modifier.fillMaxSize(), contentDescription = toy.name)
+            }
+            Text(
+                toy.name,
+                style    = MaterialTheme.typography.labelSmall,
+                maxLines = 2,
+                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.Default.VerifiedUser,
+                    null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(10.dp)
+                )
+                Spacer(Modifier.width(3.dp))
+                Text(
+                    "Verified",
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
         }

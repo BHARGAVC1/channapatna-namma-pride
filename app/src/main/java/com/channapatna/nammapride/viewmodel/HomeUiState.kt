@@ -10,5 +10,6 @@ data class HomeUiState(
     val verifyState: UiState<ToyWithArtisan> = UiState.Empty,
     val artisanSpotlight: UiState<List<Artisan>> = UiState.Loading,
     val featuredToys: UiState<List<Toy>> = UiState.Loading,
-    val isOffline: Boolean = false
+    val isOffline: Boolean = false,
+    val recentlyVerified: List<Toy> = emptyList()
 )
