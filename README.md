@@ -33,27 +33,27 @@ The application helps users:
 ## 📸 App Gallery
 
 <p align="center">
-  <img src="home-main.png" width="220"/>
-  <img src="artisan-profile.png" width="220"/>
-  <img src="verification-result.jpeg" width="220"/>
+  <img src="./screenshots/home-main.png" width="220"/>
+  <img src="./screenshots/artisan-profile.png" width="220"/>
+  <img src="./screenshots/verification-result.jpeg" width="220"/>
 </p>
 
 <p align="center">
-  <img src="artisan-location.png" width="220"/>
-  <img src="story-history.jpeg" width="220"/>
-  <img src="story-impact.jpeg" width="220"/>
+  <img src="./screenshots/artisan-location.png" width="220"/>
+  <img src="./screenshots/story-history.jpeg" width="220"/>
+  <img src="./screenshots/story-impact.jpeg" width="220"/>
 </p>
 
 <p align="center">
-  <img src="catalog.jpeg" width="220"/>
-  <img src="toy-details.jpeg" width="220"/>
-  <img src="saved-toys.jpeg" width="220"/>
+  <img src="./screenshots/catalog.jpeg" width="220"/>
+  <img src="./screenshots/toy-details.jpeg" width="220"/>
+  <img src="./screenshots/saved-toys.jpeg" width="220"/>
 </p>
 
 <p align="center">
-  <img src="toy-search.jpeg" width="220"/>
-  <img src="home-search.png" width="220"/>
-  <img src="qr-scanner.jpeg" width="220"/>
+  <img src="./screenshots/toy-search.jpeg" width="220"/>
+  <img src="./screenshots/home-search.png" width="220"/>
+  <img src="./screenshots/qr-scanner.jpeg" width="220"/>
 </p>
 ---
 
