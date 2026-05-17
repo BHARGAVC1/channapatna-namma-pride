@@ -16,19 +16,21 @@ The application helps users:
 
 ---
 
-# ✨ Features
+## ✨ Key Features
 
-- 🔍 **Toy Verification System**: Use QR codes to ensure authenticity.
-- 📷 **QR Code Scanner**: Integrated high-speed scanner.
-- 🧑‍🎨 **Artisan Profiles**: Detailed bios and craft types of local masters.
-- 🗺️ **Google Maps**: Precise workshop locations and turn-by-turn navigation.
-- ❤️ **Favorites**: Save and manage your favorite handcrafted items.
-- 📱 **Modern UI**: Full Jetpack Compose Material 3 implementation.
-- ⚡ **Offline First**: Fast rendering and reliable caching with Room.
+- 🧸 Explore authentic Channapatna toys
+- 👨‍🎨 Discover verified artisan profiles
+- 📍 Locate artisans through integrated maps
+- 📖 Learn cultural stories and heritage impact
+- 🔍 Smart toy search and catalog browsing
+- ❤️ Save favorite toys for quick access
+- ✅ Toy authenticity verification system
+- 📷 QR Scanner integration for product details
+- 🌱 Promote sustainable local craftsmanship
 
 ---
 
-<h2>📸 App Gallery</h2>
+## 📸 App Gallery
 
 <p align="center">
   <img src="home-main.png" width="220"/>
@@ -126,10 +128,11 @@ app/
 # 🎯 Future Enhancements
 
 - AI-based product verification
-- Cloud synchronization
-- Analytics dashboard
-- Improved search
 - Multi-language support
+- In-app artisan chat system
+- Online ordering integration
+- AR toy visualization
+- Enhanced analytics dashboard
 
 ---
 
@@ -144,8 +147,8 @@ app/
 
 📧 bhargav27love@gmail.com
 
-🌐 GitHub:
-https://github.com/BHARGAVC1
+- GitHub: <a href="https://github.com/BHARGAVC1">BHARGAVC1</a>
+- LinkedIn: <a href="https://www.linkedin.com/in/bhargav-c-a2a46535a">Bhargav C</a>
 
 ---
 
