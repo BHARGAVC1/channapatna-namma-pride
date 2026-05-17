@@ -28,24 +28,31 @@ The application helps users:
 
 ---
 
-# 📸 App Gallery
+<h2>📸 App Gallery</h2>
 
 <p align="center">
-  <img src="screenshots/home-main.jpeg" width="30%" alt="Home Screen" />
-  <img src="screenshots/catalog.jpeg" width="30%" alt="Toy Catalog" />
-  <img src="screenshots/toy-details.jpeg" width="30%" alt="Toy Details" />
-</p>
-<p align="center">
-  <img src="screenshots/qr-scanner.jpeg" width="30%" alt="QR Scanner" />
-  <img src="screenshots/verification-result.jpeg" width="30%" alt="Verification Result" />
-  <img src="screenshots/artisan-profile.jpeg" width="30%" alt="Artisan Profile" />
-</p>
-<p align="center">
-  <img src="screenshots/artisan-location.jpeg" width="30%" alt="Map Location" />
-  <img src="screenshots/saved-toys.jpeg" width="30%" alt="Saved Toys" />
-  <img src="screenshots/story-history.jpeg" width="30%" alt="History Page" />
+  <img src="home-main.png" width="220"/>
+  <img src="artisan-profile.png" width="220"/>
+  <img src="verification-result.jpeg" width="220"/>
 </p>
 
+<p align="center">
+  <img src="artisan-location.png" width="220"/>
+  <img src="story-history.jpeg" width="220"/>
+  <img src="story-impact.jpeg" width="220"/>
+</p>
+
+<p align="center">
+  <img src="catalog.jpeg" width="220"/>
+  <img src="toy-details.jpeg" width="220"/>
+  <img src="saved-toys.jpeg" width="220"/>
+</p>
+
+<p align="center">
+  <img src="toy-search.jpeg" width="220"/>
+  <img src="home-search.png" width="220"/>
+  <img src="qr-scanner.jpeg" width="220"/>
+</p>
 ---
 
 # 🛠️ Tech Stack
