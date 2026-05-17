@@ -34,26 +34,27 @@ The application helps users:
 
 <p align="center">
   <img src="./screenshots/home-main.png" width="220"/>
-  <img src="./screenshots/artisan-profile.png" width="220"/>
-  <img src="./screenshots/verification-result.jpeg" width="220"/>
-</p>
-
-<p align="center">
-  <img src="./screenshots/artisan-location.png" width="220"/>
-  <img src="./screenshots/story-history.jpeg" width="220"/>
-  <img src="./screenshots/story-impact.jpeg" width="220"/>
-</p>
-
-<p align="center">
-  <img src="./screenshots/catalog.jpeg" width="220"/>
-  <img src="./screenshots/toy-details.jpeg" width="220"/>
-  <img src="./screenshots/saved-toys.jpeg" width="220"/>
+  <img src="./screenshots/home-search.png" width="220"/>
+  <img src="./screenshots/qr-scanner.jpeg" width="220"/>
 </p>
 
 <p align="center">
   <img src="./screenshots/toy-search.jpeg" width="220"/>
-  <img src="./screenshots/home-search.png" width="220"/>
-  <img src="./screenshots/qr-scanner.jpeg" width="220"/>
+  <img src="./screenshots/verification-result.jpeg" width="220"/>
+  <img src="./screenshots/catalog.jpeg" width="220"/>
+  
+</p>
+
+<p align="center">
+  <img src="./screenshots/toy-details.jpeg" width="220"/>
+  <img src="./screenshots/artisan-profile.png" width="220"/>
+  <img src="./screenshots/artisan-location.png" width="220"/>
+</p>
+
+<p align="center">
+  <img src="./screenshots/saved-toys.jpeg" width="220"/>
+  <img src="./screenshots/story-history.jpeg" width="220"/>
+  <img src="./screenshots/story-impact.jpeg" width="220"/>
 </p>
 ---
 
