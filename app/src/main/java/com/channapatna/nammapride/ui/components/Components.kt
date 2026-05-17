@@ -195,7 +195,8 @@ fun ArtisanInitialsAvatar(name: String, size: Int = 48, photoUrl: String? = null
         Modifier
             .size(size.dp)
             .clip(CircleShape)
-            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)),
+            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.15f))
+            .semantics { contentDescription = "Profile of $name" },
         contentAlignment = Alignment.Center
     ) {
         if (!photoUrl.isNullOrBlank()) {
@@ -268,7 +269,7 @@ fun ToyImage(
         ) {
             Icon(
                 imageVector = Icons.Default.SmartToy,
-                contentDescription = null,
+                contentDescription = contentDescription ?: "Toy illustration",
                 tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
                 modifier = Modifier.size(64.dp)
             )
@@ -344,7 +345,10 @@ fun ArtisanCard(
     onClick: () -> Unit
 ) {
     Surface(
-        modifier = Modifier.fillMaxWidth().clickable(onClick = onClick),
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 72.dp)
+            .clickable(onClick = onClick),
         color    = MaterialTheme.colorScheme.surfaceVariant,
         shape    = RoundedCornerShape(24.dp),
         border   = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),
